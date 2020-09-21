@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">GreenBot</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+
+
+    <string name="title_activity_onbording">OnbordingActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_signin">SigninActivity</string>
+
+
+    <string name="ok">OK</string>
+    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
+    <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
+    <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
+    <string name="title_activity_main">Barcode Reader Sample</string>
+    <string name="barcode_header">Click &quot;Read Barcode&quot; to read a barcode</string>
+    <string name="read_barcode">Read Barcode</string>
+    <string name="auto_focus">Auto Focus</string>
+    <string name="use_flash">Use Flash</string>
+    <string name="barcode_success">Barcode read successfully</string>
+    <string name="barcode_failure">No barcode captured</string>
+    <string name="barcode_error">"Error reading barcode: %1$s"</string>
+<!--onbording-->
+    <string name="onbording_one_title">Quel consommateur \n êtes-vous?</string>
+    <string name="onbording_one_doc">Dites-nous ce qui compte pour vous afin de
+personnaliser votre expérience.</string>
+    <string name="onbording_title">  Bienvenue dans GreenBot!</string>
+    <string name="onbording_doc"> Nous voulons être transparents et vous permettre
+d’acheter les produits qui vous correspondent.
+C’est pourquoi nous avons développé l’application
+GreenBot. Celle-ci vous permettra de consulter
+une multitude de données spécifiques à un produit
+et de le comparer à d’autres avant d’effectuer
+vos achats..</string>
+    <string name="onbording_two_title">Scannez un produit</string>
+    <string name="onbording_two_doc">Munissez vous de votre Smartphone durant vos
+courses afin de scanner les QR Code présents sur
+une sélection de produits et obtenez des
+récompenses.</string>
+    <string name="onbording_three_title">Consultez les indicateurs qui
+comptent pour vous</string>
+    <string name="onbording_three_doc">Pour des achats plus responsables, il ne vous reste
+plus qu’à profiter des informations disponibles
+pour chaque produit.</string>
+    <string name="following">SUIVANT</string>
+    
+    
+
+    <string name="title_activity_onbord_start">OnbordStartActivity</string>
+    <string name="title_activity_siginin_select">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <string name="title_activity_signin_select">SigninSelectActivity</string>
+</resources>
+

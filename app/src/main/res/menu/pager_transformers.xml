@@ -1,0 +1,121 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_orientation"
+        android:title="change_orientation"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_anti_clock_spin"
+        android:title="anti_clock_spin"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_clock_spin"
+        android:title="clock_spin"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_cube_in_depth"
+        android:title="cube_in_depth"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_cube_in_rotate"
+        android:title="cube_in_rotate"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_cube_in_scaling"
+        android:title="cube_in_scaling"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_cube_out_depth"
+        android:title="cube_out_depth"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_cube_out_rotate"
+        android:title="cube_out_rotate"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_cube_out_scaling"
+        android:title="cube_out_scaling"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_depth_page"
+        android:title="depth_page"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_depth"
+        android:title="depth"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_fade_out"
+        android:title="fade_out"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_fan"
+        android:title="fan"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_fidget_spin"
+        android:title="fidget_spin"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_gate"
+        android:title="gate"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_hinge"
+        android:title="hinge"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_horizontal_flip"
+        android:title="horizontal_flip"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_pop"
+        android:title="pop"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_simple_transformation"
+        android:title="simple_transformation"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_spinner"
+        android:title="spinner_transformation"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_toss"
+        android:title="toss_transformation"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_vertical_flip"
+        android:title="vertical_flip"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_vertical_shut"
+        android:title="vertical_shut"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_zoom_out"
+        android:title="zoom_out"
+        app:showAsAction="always" />
+</menu>
