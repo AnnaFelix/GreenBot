@@ -42,6 +42,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_onbording"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ItemDetailsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_onbording"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

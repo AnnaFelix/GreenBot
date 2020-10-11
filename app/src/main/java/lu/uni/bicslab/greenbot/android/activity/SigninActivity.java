@@ -38,6 +38,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
 
+import lu.uni.bicslab.greenbot.android.MainActivity;
 import lu.uni.bicslab.greenbot.android.R;
 import lu.uni.bicslab.greenbot.android.barcoderead.BarcodeGraphic;
 import lu.uni.bicslab.greenbot.android.barcoderead.CameraSource;
@@ -64,8 +65,13 @@ public class SigninActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SigninActivity.this, SigninSelectActivity.class);
-                startActivityForResult(intent, RC_BARCODE_CAPTURE);
+                if(signin_id.getText().toString().isEmpty()) {
+                    Intent intent = new Intent(SigninActivity.this, SigninSelectActivity.class);
+                    startActivityForResult(intent, RC_BARCODE_CAPTURE);
+                }else{
+                    Intent intent = new Intent(SigninActivity.this, MainActivity.class);
+                    startActivityForResult(intent, RC_BARCODE_CAPTURE);
+                }
             }
         });
 

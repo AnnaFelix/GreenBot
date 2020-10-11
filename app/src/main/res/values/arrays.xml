@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="dessert_names">
+        <item>Ecologique</item>
+        <item>Economique</item>
+        <item>Culturel</item>
+        <item>Politique</item>
+        <item>Gingerbread</item>
+        <item>Honeycomb</item>
+        <item>Ice-cream Sandwich</item>
+        <item>Jelly Bean</item>
+        <item>Kitkat</item>
+        <item>Lollipop</item>
+        <item>Marshmallow</item>
+        <item>Nougat</item>
+    </string-array>
+
+    <string-array name="dessert_descriptions">
+        <item>Dans cette section vous trouverez tous les produits qui correspondent le plus àvos valeurs.
+            </item>
+        <item>Vous êtes-vous déjà demandé quels loiset traités régulent la production de vos produits préférés? Renseignez-vous danscette section</item>
+        <item>Vous êtes-vous déjà demandé quels loiset traités régulent la production de vos produits préférés? Renseignez-vous danscette section</item>
+        <item>Vous êtes-vous déjà demandé quels loiset traités régulent la production de vos produits préférés? Renseignez-vous danscette section</item>
+        <item>An oblong pastry made with choux dough filled with a cream and topped with icing.</item>
+        <item>Frozen yogurt is a frozen dessert made with yogurt and sometimes other dairy products. It is usually more tart than ice cream, as well as being lower in fat. It is different from ice milk and conventional soft serve.</item>
+        <item>Refers to a broad category of baked goods, typically flavored with ginger, cloves, nutmeg or cinnamon and sweetened with honey, sugar or molasses.</item>
+        <item>A mass of hexagonal wax cells built by honey bees in their nests to contain their larvae and stores of honey and pollen. Beekeepers may remove the entire honeycomb to harvest honey.</item>
+        <item>A frozen dessert consisting of ice cream between two wafers, cookies, or other similar biscuit.</item>
+        <item>Small bean-shaped sugar candies with soft candy shells and thick gel interiors. The confection comes in a wide variety of colors and flavors.</item>
+        <item>A chocolate-covered wafer bar confection created by Rowntree of York, England, and is now produced globally by Nestle.</item>
+        <item>A type of confectionery consisting of a sweetmeat of hard candy or water-ice mounted on a stick and intended for sucking or licking. Different informal terms are used in different places, including lolly, sucker, sticky-pop, etc.</item>
+   </string-array>
+</resources>
