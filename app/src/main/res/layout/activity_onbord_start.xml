@@ -48,16 +48,16 @@
             android:textColor="@android:color/black"
             android:textSize="@dimen/slide_desc"
             android:layout_below="@+id/onbord_title"/>
+
         <Button
             android:id="@+id/btn_start"
             android:layout_width="120dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/onbord_doc"
-            android:background="@color/blue"
             android:layout_marginTop="50dp"
             android:text="@string/following"
-            android:textColor="@color/white"></Button>
+            style="@style/bluebuton"></Button>
     </RelativeLayout>
 
 

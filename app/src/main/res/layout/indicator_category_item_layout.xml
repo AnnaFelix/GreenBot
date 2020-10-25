@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="3dp"
+    card_view:cardCornerRadius="4dp"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/icon_margin_top"
+        >
+        <RelativeLayout
+            android:id="@+id/headding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Large Text"
+            android:maxLines="1"
+            android:layout_alignParentTop="true"
+            style="@style/Texttitle" />
+        <ImageView
+            android:layout_width="@dimen/profilearrowsize"
+            android:layout_height="@dimen/profilearrowsize"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow_right"/>
+        </RelativeLayout>
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+            android:layout_below="@+id/headding"
+        android:paddingBottom="5dp">
+
+        <ImageView
+            android:id="@+id/imageview_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_menu_gallery"
+            ></ImageView>
+
+        <TextView
+            android:id="@+id/txtDoc"
+            android:layout_margin="@dimen/icon_margin_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imageview_icon"
+            android:text="Small Textggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg gggggggggggggg gggggggggggggggg gggggggggggggg ggggggggggg ggggggggggggggggggggggggggggggggg"
+            style="@style/Textprofiledata" />
+    </RelativeLayout>
+    </RelativeLayout>r
+</androidx.cardview.widget.CardView>

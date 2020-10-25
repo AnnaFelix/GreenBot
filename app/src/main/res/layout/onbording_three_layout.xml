@@ -6,6 +6,7 @@
 
 
     <ImageView
+        android:id="@+id/icon"
         android:layout_width="@dimen/icon_width"
         android:layout_height="@dimen/icon_width"
         android:layout_marginTop="@dimen/icon_margin_top"
@@ -17,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center_horizontal"
+        android:layout_below="@+id/icon"
         android:padding="@dimen/icon_margin_top"
         android:orientation="vertical">
 
@@ -31,8 +33,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center_horizontal"
             android:layout_alignParentTop="true"
-            android:textSize="@dimen/slide_title"
-            android:textStyle="bold" />
+            style="@style/Texttitle" />
 
         <TextView
             android:id="@+id/slide_three_doc"
@@ -42,17 +43,14 @@
             android:layout_centerHorizontal="true"
             android:gravity="center_horizontal"
             android:layout_marginTop="@dimen/icon_margin_top"
-            android:paddingLeft="@dimen/desc_padding"
-            android:paddingRight="@dimen/desc_padding"
             android:text="@string/onbording_three_doc"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/slide_desc"
+            style="@style/Textdata"
             android:layout_below="@+id/slide_three_title"/>
         <ImageView
             android:layout_width="@dimen/onbording_image_width"
             android:layout_height="@dimen/onbording_image_width"
-            android:src="@drawable/ic_menu_camera"
+            android:src="@drawable/three_onbord"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/icon_margin_top"
             android:layout_centerHorizontal="true"

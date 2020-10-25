@@ -71,5 +71,24 @@ pour chaque produit.</string>
     <string name="login_failed">"Login failed"</string>
 
     <string name="title_activity_signin_select">SigninSelectActivity</string>
+    <string name="scanner">Scanner</string>
+    <string name="profile">Profile</string>
+    <string name="loading">Loading..</string>
+    <string name="nodata">No Data!</string>
+    <string name="continueff">Continue</string>
+    <string name="serialscanner"> Serial Scanner</string>
+
+    <!-- profile -->
+    <string name="productscanner"> Produits scannés</string>
+    <string name="productconsult"> Produits consultés</string>
+    <string name="retourclient"> Retour client</string>
+    <string name="recompenses"> Récompenses</string>
+    <string name="termes"> Termes et conditions d’utilisation</string>
+
+
+    <string name="type"> Type</string>
+    <string name="category"> Category</string>
+    <string name="provider"> Provider</string>
+
 </resources>
 

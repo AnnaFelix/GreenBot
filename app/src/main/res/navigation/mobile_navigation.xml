@@ -7,22 +7,26 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="lu.uni.bicslab.greenbot.android.ui.indicator.IndicatorFragment"
+        android:name="lu.uni.bicslab.greenbot.android.ui.indicator_category.IndicatorCategoryFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_indicator">
+        tools:layout="@layout/fragment_indicator_category">
 
+
+
+    <action
+        android:id="@+id/goto_indicator"
+        app:destination="@id/fragment_indicator"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        />
     </fragment>
-
-
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="lu.uni.bicslab.greenbot.android.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/fragment_indicator"
+        android:name="lu.uni.bicslab.greenbot.android.ui.indicator.IndicatorFragment"
+        tools:layout="@layout/fragment_indicator"
+        />
 
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="lu.uni.bicslab.greenbot.android.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+
 </navigation>

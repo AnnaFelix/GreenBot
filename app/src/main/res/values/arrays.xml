@@ -7,13 +7,14 @@
         <item>Culturel</item>
         <item>Politique</item>
         <item>Gingerbread</item>
-        <item>Honeycomb</item>
+        <item>Honey</item>
         <item>Ice-cream Sandwich</item>
-        <item>Jelly Bean</item>
-        <item>Kitkat</item>
-        <item>Lollipop</item>
-        <item>Marshmallow</item>
-        <item>Nougat</item>
+        <item>Ecologique</item>
+        <item>Ecologique</item>
+        <item>Ecologique</item>
+        <item>Ecologique</item>
+        <item>Ecologique</item>
+
     </string-array>
 
     <string-array name="dessert_descriptions">
@@ -32,3 +33,4 @@
         <item>A type of confectionery consisting of a sweetmeat of hard candy or water-ice mounted on a stick and intended for sucking or licking. Different informal terms are used in different places, including lolly, sucker, sticky-pop, etc.</item>
    </string-array>
 </resources>
+

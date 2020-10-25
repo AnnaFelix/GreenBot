@@ -26,7 +26,6 @@
                 android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/header"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax" />
@@ -54,16 +53,12 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/scrollableview"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingTop="@dimen/activity_margin_content"
-        android:paddingBottom="@dimen/activity_margin_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:listItem="@layout/item_dessert" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <include layout="@layout/productview"></include>
+    </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
@@ -71,6 +66,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"
         android:focusable="true"
+        android:visibility="gone"
         android:src="@drawable/ic_action_add"
         app:backgroundTint="#279AF1"
         app:fabSize="normal"

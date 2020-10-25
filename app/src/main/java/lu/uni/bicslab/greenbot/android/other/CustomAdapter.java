@@ -11,52 +11,49 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import lu.uni.bicslab.greenbot.android.R;
-import lu.uni.bicslab.greenbot.android.ui.indicator.IndicatorViewModel;
+import lu.uni.bicslab.greenbot.android.ui.indicator.IndicatorModel;
+import lu.uni.bicslab.greenbot.android.ui.indicator_category.IndicatorCategoryModel;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.DessertVh> {
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView> {
 
-    private List<IndicatorViewModel> desserts;
+    private List<IndicatorModel> indicatorModel;
     private Context context;
-    int pos;
 
-    public CustomAdapter(Context context, int pos) {
+    public CustomAdapter(Context context, List<IndicatorModel>  indicatorModel) {
         this.context = context;
-        this.pos = pos;
+        this.indicatorModel = indicatorModel;
 
-        desserts = IndicatorViewModel.prepareDesserts(
-                context.getResources().getStringArray(R.array.dessert_names),
-                context.getResources().getStringArray(R.array.dessert_descriptions));
     }
 
     @Override
-    public DessertVh onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CustomView onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.item_row, parent, false);
-        return new CustomAdapter.DessertVh(view);
+        return new CustomAdapter.CustomView(view);
     }
 
     @Override
-    public void onBindViewHolder(DessertVh holder, int position) {
-        IndicatorViewModel dessert = desserts.get(position);
+    public void onBindViewHolder(CustomView holder, int position) {
+        IndicatorModel dessert = indicatorModel.get(position);
 
-        holder.mName.setText(dessert.getIndicator_name());
-        holder.mDescription.setText(dessert.getIndicator_data());
-        holder.mFirstLetter.setText(String.valueOf(dessert.getIndicator_image()));
+        holder.mName.setText(dessert.getName());
+        holder.mDescription.setText(dessert.getGeneral_description());
+        holder.mFirstLetter.setText(String.valueOf(dessert.getIcon_name()));
 
     }
 
     @Override
     public int getItemCount() {
-        return desserts == null ? 0 : desserts.size();
+        return indicatorModel == null ? 0 : indicatorModel.size();
     }
 
-    public static class DessertVh extends RecyclerView.ViewHolder {
+    public static class CustomView extends RecyclerView.ViewHolder {
 
         private TextView mName;
         private TextView mDescription;
         private TextView mFirstLetter;
 
-        public DessertVh(View itemView) {
+        public CustomView(View itemView) {
             super(itemView);
 
             mName = itemView.findViewById(R.id.txt_name);
