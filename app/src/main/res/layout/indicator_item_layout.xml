@@ -10,31 +10,37 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/icon_margin_top">
-
+        android:padding="@dimen/padding">
 
         <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
+<RelativeLayout
+    android:id="@+id/img_main"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    android:layout_marginRight="@dimen/padding2"
+    android:layout_centerVertical="true">
 
-        <ImageView
-            android:id="@+id/imageview_icon"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/ic_menu_gallery"
-            ></ImageView>
+    <ImageView
+        android:id="@+id/imageview_icon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_menu_gallery"
+        ></ImageView>
+</RelativeLayout>
+
 
         <TextView
             android:id="@+id/txtName"
-            android:layout_margin="@dimen/icon_margin_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/imageview_icon"
+            android:layout_toRightOf="@+id/img_main"
+            android:lines="2"
+            android:layout_marginTop="@dimen/padding2"
             android:text=" ggggggggggggggggggggggggggggggggggggggggggggg"
-            style="@style/Textprofile"></TextView>
+            style="@style/textdatastyle"></TextView>
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -3,7 +3,7 @@
     package="lu.uni.bicslab.greenbot.android">
 
     <uses-permission android:name="android.permission.CAMERA" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
        <activity
-            android:name=".activity.SigninSelectActivity"
+            android:name=".ui.activity.scan.SigninSelectActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_signin_select"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
-            android:name=".activity.OnbordStartActivity"
+            android:name=".ui.activity.onbord.OnbordStartActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_onbord_start"
             android:theme="@style/AppTheme.NoActionBar">
@@ -29,7 +29,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.SigninActivity"
+            android:name=".ui.activity.scan.SigninActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_signin"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.selectgrid.SelectGridOneActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_signin"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.selectgrid.SelectIGridTwoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_signin"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -38,15 +48,20 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.OnbordingActivity"
+            android:name=".ui.activity.onbord.OnbordingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_onbording"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.ItemDetailsActivity"
+            android:name=".ui.activity.itemmain.ItemDetailsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_onbording"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.feedback.FeedbackMainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_onbording"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

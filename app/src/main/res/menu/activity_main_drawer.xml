@@ -18,9 +18,9 @@
             />
 
         <item
-            android:id="@+id/contactus"
-            android:icon="@android:drawable/ic_dialog_email"
-            android:title="Contact us"
+            android:id="@+id/notification"
+            android:icon="@android:drawable/ic_notification_overlay"
+            android:title="Notification"
             />
 
     </group>

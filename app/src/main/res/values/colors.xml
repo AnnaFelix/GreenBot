@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/gray_dark</color>
-    <color name="colorPrimaryDark">@color/gray_dark</color>
-
-    <color name="black_overlay">#66000000</color>
+    <color name="colorPrimary">@color/black</color>
+<!--    <color name="black_overlay">#66000000</color>-->
+   <color name="black_overlay">@color/gray_dark</color>
 
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="blue">#34B8E6</color>
-    <color name="gray">#E0E0E0</color>
+   <color name="gray">#E0E0E0</color>
     <color name="gray_dark">#808080</color>
 
 
@@ -22,13 +21,13 @@
 
 <color name="lightblue" >  #9AE7FF</color>
 
-<color name="lightgray" > #E0E0E0</color>
+<!--<color name="lightgray" > #E0E0E0</color>-->
 
 
 
-    <color name="black_trans80">#33000000</color>
+<!--    <color name="black_trans80">#33000000</color>-->
 
-    <color name="indicator_unselected">#4D000000</color>
+<!--    <color name="indicator_unselected">#4D000000</color>-->
 
 
     <array name="array_dot_active">

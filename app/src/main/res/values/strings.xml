@@ -87,5 +87,25 @@ pour chaque produit.</string>
     <string name="type"> Type</string>
     <string name="category"> Category</string>
     <string name="provider"> Provider</string>
+
+    <string name="bioimporte">Bio importé</string>
+    <string name="biolocal">Bio local</string>
+    <string name="conimporte">Conventionel importé</string>
+    <string name="conlocal">Conventionel local</string>
+
+    <string name="privilege"> Privilégier des
+    méthodes
+    agricoles éthiques</string>
+    <string name="Encourager" >Encourager une
+    production
+    équitable</string>
+    <string name= "Connaitre" > Connaître les lois
+    qui régissent une
+    filière.</string>
+    <string name="Soutenir" >Soutenir les
+    producteurs au
+        juste prix.</string>
+<string name="review">Review</string>
+
 </resources>
 

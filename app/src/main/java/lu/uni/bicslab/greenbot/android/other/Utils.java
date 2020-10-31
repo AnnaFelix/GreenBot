@@ -1,6 +1,7 @@
 package lu.uni.bicslab.greenbot.android.other;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,6 +33,14 @@ public class Utils {
         }
 
         return jsonString;
+    }
+    public static Drawable GetImage(Context c, String ImageName) {
+        try {
+            return c.getResources().getDrawable(c.getResources().getIdentifier(ImageName, "drawable", c.getPackageName()));
+        }catch (Exception e){
+            return c.getResources().getDrawable(c.getResources().getIdentifier("ind_animal", "drawable", c.getPackageName()));
+
+        }
     }
 
 }

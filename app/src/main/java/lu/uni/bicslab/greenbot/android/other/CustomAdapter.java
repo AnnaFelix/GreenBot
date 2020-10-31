@@ -4,15 +4,18 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.List;
 
 import lu.uni.bicslab.greenbot.android.R;
-import lu.uni.bicslab.greenbot.android.ui.indicator.IndicatorModel;
-import lu.uni.bicslab.greenbot.android.ui.indicator_category.IndicatorCategoryModel;
+import lu.uni.bicslab.greenbot.android.ui.fragment.indicator.IndicatorModel;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView> {
 
@@ -34,11 +37,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     @Override
     public void onBindViewHolder(CustomView holder, int position) {
-        IndicatorModel dessert = indicatorModel.get(position);
+        IndicatorModel model = indicatorModel.get(position);
 
-        holder.mName.setText(dessert.getName());
-        holder.mDescription.setText(dessert.getGeneral_description());
-        holder.mFirstLetter.setText(String.valueOf(dessert.getIcon_name()));
+        holder.mName.setText(model.getName());
+        holder.mDescription.setText(model.getGeneral_description());
+
+        Glide.with(context).load(Utils.GetImage(context,model.getIcon_name())).apply(RequestOptions.centerCropTransform()).into(holder.txt_firstletter);
 
     }
 
@@ -51,14 +55,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
         private TextView mName;
         private TextView mDescription;
-        private TextView mFirstLetter;
+        private ImageView txt_firstletter;
 
         public CustomView(View itemView) {
             super(itemView);
 
             mName = itemView.findViewById(R.id.txt_name);
             mDescription = itemView.findViewById(R.id.txt_desc);
-            mFirstLetter = itemView.findViewById(R.id.txt_firstletter);
+            txt_firstletter = itemView.findViewById(R.id.txt_firstletter);
         }
     }
 }

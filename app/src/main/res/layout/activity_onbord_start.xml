@@ -7,7 +7,7 @@
         android:id="@+id/img_icon"
         android:layout_width="@dimen/icon_width"
         android:layout_height="@dimen/icon_width"
-        android:layout_marginTop="@dimen/icon_margin_top"
+        android:layout_marginTop="@dimen/padding2"
         android:layout_centerHorizontal="true"
         android:src="@drawable/uni_icon" />
     <RelativeLayout
@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/img_icon"
         android:gravity="center_horizontal"
-        android:padding="@dimen/icon_margin_top"
+        android:padding="@dimen/padding2"
         android:orientation="vertical">
 
 
@@ -30,7 +30,7 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
             android:gravity="center_horizontal"
-            android:textSize="@dimen/slide_title"
+            android:textSize="@dimen/txt_title_size"
             android:textStyle="bold" />
 
         <TextView
@@ -39,20 +39,20 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/icon_margin_top"
+            android:layout_marginTop="@dimen/padding2"
             android:paddingLeft="@dimen/desc_padding"
             android:paddingRight="@dimen/desc_padding"
             android:text="@string/onbording_one_doc"
             android:textAlignment="center"
             android:gravity="center_horizontal"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/slide_desc"
+            android:textSize="@dimen/txt_doc_size"
             android:layout_below="@+id/onbord_title"/>
 
         <Button
             android:id="@+id/btn_start"
-            android:layout_width="120dp"
-            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/onbord_doc"
             android:layout_marginTop="50dp"

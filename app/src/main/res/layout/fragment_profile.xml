@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Wiliam Snoe"
-                style="@style/Textdata"
+                style="@style/textdatastyle"
                 android:textStyle="bold"/>
         </LinearLayout>
         <androidx.cardview.widget.CardView
@@ -48,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0027908642"
-                    style="@style/Textdata"
+                    style="@style/textdatastyle"
                     android:textStyle="bold"/>
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:text="@string/serialscanner"
-                        style="@style/Textdata"
+                        style="@style/textdatastyle"
                         android:textStyle="bold"/>
                     <TextView
                         android:id="@+id/txtscanner_text"
@@ -73,7 +73,7 @@
                         android:gravity="center_vertical"
                         android:text="Wiliam Snoe"
                         android:layout_toRightOf="@+id/txtscanner"
-                        style="@style/Textdata"/>
+                        style="@style/textdatastyle"/>
                 </RelativeLayout>
 
             </LinearLayout>

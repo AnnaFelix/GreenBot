@@ -38,63 +38,63 @@
     "id": "ind_food",
     "name": "Food Miles",
     "category_id": "ind_cat_economic",
-    "icon_name": "ind_soverignty",
+    "icon_name": "ind_food",
     "general_description": "lorem ipsum Husbandry Conditions, Transport Conditions, Slaughtering Conditions"
   },
   {
     "id": "ind_localeco",
     "name": "Local Economy",
     "category_id": "ind_cat_economic",
-    "icon_name": "ind_soverignty",
+    "icon_name": "ind_localeco",
     "general_description": "lorem ipsum Husbandry Conditions, Transport Conditions, Slaughtering Conditions"
   },
   {
     "id": "ind_decent",
     "name": "Decent Livelihoods",
     "category_id": "ind_cat_social",
-    "icon_name": "ind_soverignty",
+    "icon_name": "ind_decent",
     "general_description": "lorem ipsum Husbandry Conditions, Transport Conditions, Slaughtering Conditions"
   },
   {
     "id": "ind_equity",
     "name": "Equity",
     "category_id": "ind_cat_social",
-    "icon_name": "ind_soverignty",
+    "icon_name": "ind_equity",
     "general_description": "lorem ipsum Husbandry Conditions, Transport Conditions, Slaughtering Conditions"
   },
   {
     "id": "ind_labour",
     "name": "Labour Rights",
     "category_id": "ind_cat_social",
-    "icon_name": "ind_soverignty",
+    "icon_name": "ind_labour",
     "general_description": "lorem ipsum Husbandry Conditions, Transport Conditions, Slaughtering Conditions"
   },
   {
     "id": "ind_fair",
     "name": "Fair Trade Practices",
     "category_id": "ind_cat_social",
-    "icon_name": "ind_soverignty",
+    "icon_name": "ind_fair",
     "general_description": "lorem ipsum Husbandry Conditions, Transport Conditions, Slaughtering Conditions"
   },
   {
     "id": "ind_transparency",
     "name": "Transparency",
     "category_id": "ind_cat_good_gevernance",
-    "icon_name": "ind_soverignty",
+    "icon_name": "ind_transparency",
     "general_description": "lorem ipsum Husbandry Conditions, Transport Conditions, Slaughtering Conditions"
   },
   {
     "id": "ind_participation",
     "name": "Participation",
     "category_id": "ind_cat_good_gevernance",
-    "icon_name": "ind_soverignty",
+    "icon_name": "ind_participation",
     "general_description": "lorem ipsum Husbandry Conditions, Transport Conditions, Slaughtering Conditions"
   },
   {
     "id": "ind_sustainable",
     "name": "Sustainable Management",
     "category_id": "ind_cat_environmental_integrity",
-    "icon_name": "ind_soverignty",
+    "icon_name": "ind_sustainable",
     "general_description": "lorem ipsum Husbandry Conditions, Transport Conditions, Slaughtering Conditions"
   }
 ]

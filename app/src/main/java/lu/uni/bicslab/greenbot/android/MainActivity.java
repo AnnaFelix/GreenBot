@@ -15,7 +15,6 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -24,11 +23,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import lu.uni.bicslab.greenbot.android.activity.SigninActivity;
-import lu.uni.bicslab.greenbot.android.ui.home.HomeFragment;
-import lu.uni.bicslab.greenbot.android.ui.profile.ProfileFragment;
+import lu.uni.bicslab.greenbot.android.ui.activity.feedback.FeedbackMainActivity;
+import lu.uni.bicslab.greenbot.android.ui.activity.onbord.OnbordingActivity;
+import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninActivity;
+import lu.uni.bicslab.greenbot.android.ui.fragment.home.HomeFragment;
+import lu.uni.bicslab.greenbot.android.ui.fragment.profile.ProfileFragment;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -61,7 +62,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         //getting bottom navigation view and attaching the listener
         BottomNavigationView navigation = findViewById(R.id.bottomNavigation);
         navigation.setOnNavigationItemSelectedListener(this);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                if(id == R.id.setting) {
+                    Intent iz = new Intent(MainActivity.this, OnbordingActivity.class);
+                    startActivity(iz);
+                }
+                else if(id==R.id.notification){
+                    Intent iz = new Intent(MainActivity.this, FeedbackMainActivity.class);
+                    startActivity(iz);
+                }
+                return true;
+            }
+        });
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,10 +96,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 || super.onSupportNavigateUp();
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment = null;
-        //Toast.makeText(MainActivity.this,""+item.getItemId(),Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this,""+item.getItemId(), Toast.LENGTH_LONG).show();
 
         switch (item.getItemId()) {
             case R.id.homemain:
@@ -96,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.profile:
                 fragment = new ProfileFragment();
                 break;
+
 
         }
 

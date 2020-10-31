@@ -25,6 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_icon"
         android:hint="Id"
+        android:gravity="center_horizontal"
+        android:layout_margin="@dimen/padding2"
         android:layout_centerInParent="true"
         android:imeActionLabel="ID"
         android:imeOptions="actionDone"
@@ -35,12 +37,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginTop="16dp"
         android:text="@string/continueff"
         android:layout_below="@+id/signin_id"
         android:layout_centerHorizontal="true"
         style="@style/bluebuton"/>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:weightSum="3"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/padding2"
+        android:background="@drawable/add_one">
+    </ImageView>
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@drawable/add_two"
+        android:layout_margin="@dimen/padding2">
+    </ImageView>
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/padding2"
+        android:background="@drawable/racines_square">
 
+    </ImageView>
+</LinearLayout>
 
 </RelativeLayout>
