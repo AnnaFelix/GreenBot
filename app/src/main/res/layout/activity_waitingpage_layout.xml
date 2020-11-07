@@ -7,6 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/accountconsideration"></TextView>
+        android:text="@string/accountconsideration"
+        style="@style/textdatastyle"></TextView>
 
 </RelativeLayout>
