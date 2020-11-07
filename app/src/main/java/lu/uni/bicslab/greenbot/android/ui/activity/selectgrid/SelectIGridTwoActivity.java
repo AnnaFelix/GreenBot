@@ -12,9 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import lu.uni.bicslab.greenbot.android.MainActivity;
 import lu.uni.bicslab.greenbot.android.R;
+import lu.uni.bicslab.greenbot.android.other.Profile;
+import lu.uni.bicslab.greenbot.android.other.Utils;
+import lu.uni.bicslab.greenbot.android.ui.activity.onbord.OnbordStartActivity;
 import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninActivity;
 import lu.uni.bicslab.greenbot.android.other.CustomGridAdapter;
+import lu.uni.bicslab.greenbot.android.ui.activity.scanitem.SelectscanActivity;
+import lu.uni.bicslab.greenbot.android.ui.activity.ui.WaitingPageActivity;
 
 public class SelectIGridTwoActivity extends AppCompatActivity {
 
@@ -47,9 +53,16 @@ public class SelectIGridTwoActivity extends AppCompatActivity {
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //finish();
-                Intent i = new Intent(SelectIGridTwoActivity.this, SigninActivity.class);
-                startActivity(i);
+                finish();
+                Profile profile = Utils.readProfileData(getApplicationContext());
+                if(profile!=null && profile.isLogedin()==Utils.user_loggedin){
+                    Intent i = new Intent(SelectIGridTwoActivity.this, MainActivity.class);
+                    startActivity(i);
+                }else {
+                    Intent i = new Intent(SelectIGridTwoActivity.this, WaitingPageActivity.class);
+                    startActivity(i);
+                }
+
             }
         });
         adapter = new CustomGridAdapter(data);

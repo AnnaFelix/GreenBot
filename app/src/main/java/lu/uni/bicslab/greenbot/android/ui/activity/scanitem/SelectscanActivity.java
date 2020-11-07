@@ -1,12 +1,7 @@
-package lu.uni.bicslab.greenbot.android.ui.activity.scan;
+package lu.uni.bicslab.greenbot.android.ui.activity.scanitem;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -27,6 +22,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -44,12 +43,10 @@ import lu.uni.bicslab.greenbot.android.barcoderead.BarcodeTrackerFactory;
 import lu.uni.bicslab.greenbot.android.barcoderead.CameraSource;
 import lu.uni.bicslab.greenbot.android.barcoderead.CameraSourcePreview;
 import lu.uni.bicslab.greenbot.android.barcoderead.GraphicOverlay;
+import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninActivity;
+import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninSelectActivity;
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
-public class SigninSelectActivity extends AppCompatActivity implements BarcodeGraphicTracker.BarcodeUpdateListener {
+public class SelectscanActivity extends AppCompatActivity implements BarcodeGraphicTracker.BarcodeUpdateListener {
     private static final String TAG = "Barcode-reader";
 
     // intent request code to handle updating play services if needed.
@@ -98,8 +95,8 @@ public class SigninSelectActivity extends AppCompatActivity implements BarcodeGr
             requestCameraPermission();
         }
 
-        gestureDetector = new GestureDetector(this, new SigninSelectActivity.CaptureGestureListener());
-        scaleGestureDetector = new ScaleGestureDetector(this, new SigninSelectActivity.ScaleListener());
+        gestureDetector = new GestureDetector(this, new SelectscanActivity.CaptureGestureListener());
+        scaleGestureDetector = new ScaleGestureDetector(this, new SelectscanActivity.ScaleListener());
 
         Snackbar.make(mGraphicOverlay, "Tap to capture. Pinch/Stretch to zoom",
                 Snackbar.LENGTH_LONG)
@@ -238,14 +235,12 @@ public class SigninSelectActivity extends AppCompatActivity implements BarcodeGr
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        try {
-            if (mPreview != null) {
-                mPreview.release();
-            }
-        }catch (Exception e){
+        try{
+        if (mPreview != null) {
+            mPreview.release();
+        }}catch (Exception e){
 
         }
-
     }
 
     /**

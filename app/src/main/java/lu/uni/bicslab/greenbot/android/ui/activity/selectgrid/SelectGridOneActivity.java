@@ -46,7 +46,7 @@ public class SelectGridOneActivity extends AppCompatActivity {
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //finish();
+                finish();
                 Intent i = new Intent(SelectGridOneActivity.this, SelectIGridTwoActivity.class);
                 startActivity(i);
             }

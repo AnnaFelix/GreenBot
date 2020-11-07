@@ -26,6 +26,7 @@ import androidx.appcompat.widget.Toolbar;
 import lu.uni.bicslab.greenbot.android.ui.activity.feedback.FeedbackMainActivity;
 import lu.uni.bicslab.greenbot.android.ui.activity.onbord.OnbordingActivity;
 import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninActivity;
+import lu.uni.bicslab.greenbot.android.ui.activity.scanitem.ScanSelectedItemActivity;
 import lu.uni.bicslab.greenbot.android.ui.fragment.home.HomeFragment;
 import lu.uni.bicslab.greenbot.android.ui.fragment.profile.ProfileFragment;
 
@@ -67,11 +68,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
-                if(id == R.id.setting) {
-                    Intent iz = new Intent(MainActivity.this, OnbordingActivity.class);
-                    startActivity(iz);
-                }
-                else if(id==R.id.notification){
+
+                 if(id==R.id.notification){
                     Intent iz = new Intent(MainActivity.this, FeedbackMainActivity.class);
                     startActivity(iz);
                 }
@@ -109,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
             case R.id.scanner:
                 //fragment = new HomeFragment();
-                Intent i = new Intent(this, SigninActivity.class);
+                Intent i = new Intent(this, ScanSelectedItemActivity.class);
                 startActivity(i);
                 break;
 

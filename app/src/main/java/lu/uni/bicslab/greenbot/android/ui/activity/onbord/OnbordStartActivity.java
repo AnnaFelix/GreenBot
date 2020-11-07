@@ -8,7 +8,12 @@ import android.view.View;
 import android.widget.Button;
 
 
+import lu.uni.bicslab.greenbot.android.MainActivity;
 import lu.uni.bicslab.greenbot.android.R;
+import lu.uni.bicslab.greenbot.android.other.Profile;
+import lu.uni.bicslab.greenbot.android.other.Utils;
+import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninActivity;
+import lu.uni.bicslab.greenbot.android.ui.activity.ui.WaitingPageActivity;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -31,9 +36,18 @@ public class OnbordStartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Intent i = new Intent(OnbordStartActivity.this, SelectImpotlocalFragment.class);
-                OnbordingActivity.init=true;
-                Intent i = new Intent(OnbordStartActivity.this, OnbordingActivity.class);
-                startActivity(i);
+                Profile profile = Utils.readProfileData(getApplicationContext());
+                if(profile!=null && profile.isLogedin()==Utils.user_loggedin){
+                    Intent i = new Intent(OnbordStartActivity.this, MainActivity.class);
+                    startActivity(i);
+                }else if(profile!=null &&  profile.isLogedin()==Utils.user_underconsideration){
+                    Intent i = new Intent(OnbordStartActivity.this, WaitingPageActivity.class);
+                    startActivity(i);
+                }else {
+                    OnbordingActivity.init=true;
+                    Intent i = new Intent(OnbordStartActivity.this, SigninActivity.class);
+                    startActivity(i);
+                }
             }
         });
 

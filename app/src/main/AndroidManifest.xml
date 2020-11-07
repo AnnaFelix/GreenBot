@@ -62,6 +62,22 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_onbording"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.scanitem.ScanSelectedItemActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_onbording"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.scanitem.SelectscanActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_onbording"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.ui.WaitingPageActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
+        WaitingPageActivity
     </application>
 
 </manifest>

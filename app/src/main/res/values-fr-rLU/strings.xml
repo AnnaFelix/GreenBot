@@ -103,6 +103,8 @@ pour chaque produit.</string>
     <string name= "Connaitre" > Connaître les lois qui régissent une filière.</string>
     <string name="Soutenir" >Soutenir les producteurs au juste prix.</string>
     <string name="review">Review</string>
+    <string name="Price">Price</string>
+    <string name="accountconsideration">Your account is under consideration</string>
 
 </resources>
 

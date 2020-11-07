@@ -102,15 +102,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="@string/review"
+            android:text="@string/profile"
             style="@style/Textprofile"
             android:layout_below="@+id/slide_one_title"/>
-        <RadioButton
+        <CheckBox
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="@dimen/padding"
             android:layout_gravity="center_vertical">
-        </RadioButton>
+        </CheckBox>
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"

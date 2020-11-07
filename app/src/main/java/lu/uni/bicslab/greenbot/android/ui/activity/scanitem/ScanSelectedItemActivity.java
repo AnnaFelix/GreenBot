@@ -1,4 +1,4 @@
-package lu.uni.bicslab.greenbot.android.ui.activity.scan;
+package lu.uni.bicslab.greenbot.android.ui.activity.scanitem;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,16 +13,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import lu.uni.bicslab.greenbot.android.MainActivity;
 import lu.uni.bicslab.greenbot.android.R;
-import lu.uni.bicslab.greenbot.android.other.Profile;
-import lu.uni.bicslab.greenbot.android.other.Utils;
-import lu.uni.bicslab.greenbot.android.ui.activity.onbord.OnbordingActivity;
+import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninActivity;
+import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninSelectActivity;
 
-public class SigninActivity extends AppCompatActivity {
+public class ScanSelectedItemActivity extends AppCompatActivity {
 
-   Button login;
-   public static final int RC_BARCODE_CAPTURE = 9001;
-   EditText signin_id;
-   String id;
+    Button login;
+    public static final int RC_BARCODE_CAPTURE = 9001;
+    EditText signin_id;
+    String id;
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -36,22 +35,16 @@ public class SigninActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
-                id = signin_id.getText().toString();
-
+                    id = signin_id.getText().toString();
                 }catch (Exception e){
                     id = "" ;
                 }
                 if(id.isEmpty()||id.length()==0) {
-                    Intent intent = new Intent(SigninActivity.this, SigninSelectActivity.class);
+                    Intent intent = new Intent(ScanSelectedItemActivity.this, SigninSelectActivity.class);
                     startActivityForResult(intent, RC_BARCODE_CAPTURE);
 
                 }else{
-                    Profile profile = new Profile();
-                    profile.setSerialscanner(id);
-                    profile.setLogedin(Utils.user_underconsideration);
-                    Utils.saveProfile(getApplicationContext(),profile);
-                    Intent intent = new Intent(SigninActivity.this, OnbordingActivity.class);
-                    startActivityForResult(intent, RC_BARCODE_CAPTURE);
+                    finish();
                 }
             }
         });
@@ -64,13 +57,13 @@ public class SigninActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.e("TAG", " irequestCode"+requestCode+" resultCode"+resultCode);
         if (requestCode == RC_BARCODE_CAPTURE) {
-                if (data != null) {
-                    String requiredValue = data.getStringExtra("barcode");
-                    signin_id.setText(""+requiredValue);
-                    Log.e("TAG", "Barcode read:final " +requiredValue);
-                } else {
-                    Log.e("TAG", "No barcode captured, intent data is null");
-                }
+            if (data != null) {
+                String requiredValue = data.getStringExtra("barcode");
+                signin_id.setText(""+requiredValue);
+                Log.e("TAG", "Barcode read:final " +requiredValue);
+            } else {
+                Log.e("TAG", "No barcode captured, intent data is null");
+            }
 
         }
         else {
