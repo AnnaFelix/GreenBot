@@ -50,7 +50,7 @@ public class IndicatorCategoryFragment extends Fragment
             list = fillDummyData();
 
 
-            itemAdapter.setMovieList(getActivity(),list);
+            itemAdapter.setModelList(getActivity(),list);
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setItemAnimator(new DefaultItemAnimator());

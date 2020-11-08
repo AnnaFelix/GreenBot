@@ -2,7 +2,7 @@ package lu.uni.bicslab.greenbot.android.ui.fragment.indicator;
 
 import androidx.lifecycle.ViewModel;
 
-public class IndicatorModel extends ViewModel {
+public class IndicatorModel {
 
     String indicator_id;
     String name;
@@ -11,8 +11,9 @@ public class IndicatorModel extends ViewModel {
     String category_id;
     String id;
     String general_description;
+    int selectionnumber = 0;
 
-    public IndicatorModel(String indicator_id, String name, String icon_name, String indicator_description, String category_id, String id, String general_description) {
+    public IndicatorModel(String indicator_id, String name, String icon_name, String indicator_description, String category_id, String id, String general_description, int selectionnumber) {
         this.indicator_id = indicator_id;
         this.name = name;
         this.icon_name = icon_name;
@@ -20,6 +21,7 @@ public class IndicatorModel extends ViewModel {
         this.category_id = category_id;
         this.id = id;
         this.general_description = general_description;
+        this.selectionnumber = selectionnumber;
     }
 
     public String getIndicator_idForProduct() {
@@ -77,4 +79,18 @@ public class IndicatorModel extends ViewModel {
     public void setGeneral_description(String general_description) {
         this.general_description = general_description;
     }
+
+    public String getIndicator_id() {
+        return indicator_id;
+    }
+
+    public int getSelectionnumber() {
+        return selectionnumber;
+    }
+
+    public void setSelectionnumber(int selectionnumber) {
+        this.selectionnumber = selectionnumber;
+    }
+
+
 }

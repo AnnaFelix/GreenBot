@@ -22,21 +22,22 @@ import lu.uni.bicslab.greenbot.android.other.Utils;
 
 public class IndicatorCategoryAdapter extends RecyclerView.Adapter<ItemHolder> implements Filterable {
 
-    private List<IndicatorCategoryModel> movieList;
-    private List<IndicatorCategoryModel> movieListFiltered;
+    private List<IndicatorCategoryModel> modelList;
+    private List<IndicatorCategoryModel> modelListFiltered;
     private Context context;
 
-    public void setMovieList(Context context, final List<IndicatorCategoryModel> movieList) {
+
+    public void setModelList(Context context, final List<IndicatorCategoryModel> movieList) {
         this.context = context;
-        if (this.movieList == null) {
-            this.movieList = movieList;
-            this.movieListFiltered = movieList;
-            notifyItemChanged(0, movieListFiltered.size());
+        if (this.modelList == null) {
+            this.modelList = movieList;
+            this.modelListFiltered = movieList;
+            notifyItemChanged(0, modelListFiltered.size());
         } else {
             final DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
                 @Override
                 public int getOldListSize() {
-                    return IndicatorCategoryAdapter.this.movieList.size();
+                    return IndicatorCategoryAdapter.this.modelList.size();
                 }
 
                 @Override
@@ -46,21 +47,21 @@ public class IndicatorCategoryAdapter extends RecyclerView.Adapter<ItemHolder> i
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    return IndicatorCategoryAdapter.this.movieList.get(oldItemPosition).getIndicator_name() == movieList.get(newItemPosition).getIndicator_name();
+                    return IndicatorCategoryAdapter.this.modelList.get(oldItemPosition).getIndicator_name() == movieList.get(newItemPosition).getIndicator_name();
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
 
-                    IndicatorCategoryModel newdata = IndicatorCategoryAdapter.this.movieList.get(oldItemPosition);
+                    IndicatorCategoryModel newdata = IndicatorCategoryAdapter.this.modelList.get(oldItemPosition);
 
                     IndicatorCategoryModel olddata = movieList.get(newItemPosition);
 
                     return newdata.getIndicator_name() == olddata.getIndicator_name();
                 }
             });
-            this.movieList = movieList;
-            this.movieListFiltered = movieList;
+            this.modelList = movieList;
+            this.modelListFiltered = movieList;
             result.dispatchUpdatesTo(this);
         }
     }
@@ -75,7 +76,7 @@ public class IndicatorCategoryAdapter extends RecyclerView.Adapter<ItemHolder> i
     @Override
     public void onBindViewHolder( ItemHolder holder, int position) {
         final int pos = position;
-        final IndicatorCategoryModel model = movieListFiltered.get(position);
+        final IndicatorCategoryModel model = modelListFiltered.get(position);
         holder.txtName.setText(model.getIndicator_name());
         holder.txtDoc.setText(model.getDescription());
         holder.card_view.setOnClickListener(new View.OnClickListener() {
@@ -125,8 +126,8 @@ public class IndicatorCategoryAdapter extends RecyclerView.Adapter<ItemHolder> i
     @Override
     public int getItemCount() {
 
-        if (movieList != null) {
-            return movieListFiltered.size();
+        if (modelList != null) {
+            return modelListFiltered.size();
         } else {
             return 0;
         }
@@ -139,25 +140,25 @@ public class IndicatorCategoryAdapter extends RecyclerView.Adapter<ItemHolder> i
             protected FilterResults performFiltering(CharSequence charSequence) {
                 String charString = charSequence.toString();
                 if (charString.isEmpty()) {
-                    movieListFiltered = movieList;
+                    modelListFiltered = modelList;
                 } else {
                     List<IndicatorCategoryModel> filteredList = new ArrayList<>();
-                    for (IndicatorCategoryModel movie : movieList) {
+                    for (IndicatorCategoryModel movie : modelList) {
                         if (movie.getIndicator_name().toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(movie);
                         }
                     }
-                    movieListFiltered = filteredList;
+                    modelListFiltered = filteredList;
                 }
 
                 FilterResults filterResults = new FilterResults();
-                filterResults.values = movieListFiltered;
+                filterResults.values = modelListFiltered;
                 return filterResults;
             }
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                movieListFiltered = (ArrayList<IndicatorCategoryModel>) filterResults.values;
+                modelListFiltered = (ArrayList<IndicatorCategoryModel>) filterResults.values;
 
                 notifyDataSetChanged();
             }

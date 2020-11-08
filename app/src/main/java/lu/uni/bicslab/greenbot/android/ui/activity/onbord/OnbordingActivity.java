@@ -101,7 +101,7 @@ public class OnbordingActivity extends AppCompatActivity {
             binding.viewPager.setPageTransformer(Utils.getTransformer(1));
             binding.viewPager.setCurrentItem(1);
             binding.viewPager.getAdapter().notifyDataSetChanged();
-        }
+        }//scroll avoid
         if(init) {
             binding.btnSkip.setVisibility(View.GONE);
             binding.viewPager.setUserInputEnabled(false);

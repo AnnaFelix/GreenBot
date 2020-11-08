@@ -7,6 +7,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,26 +29,30 @@ import java.util.List;
 
 import lu.uni.bicslab.greenbot.android.R;
 import lu.uni.bicslab.greenbot.android.databinding.FeedbackMainBinding;
+import lu.uni.bicslab.greenbot.android.other.UpdateActionCompleteListener;
+import lu.uni.bicslab.greenbot.android.other.UpdateFeedbackListener;
 import lu.uni.bicslab.greenbot.android.other.Utils;
 import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninActivity;
 import lu.uni.bicslab.greenbot.android.ui.fragment.indicator.IndicatorModel;
 import lu.uni.bicslab.greenbot.android.ui.fragment.indicator.ProductModel;
 
 
-public class FeedbackMainActivity extends AppCompatActivity {
+public class FeedbackMainActivity extends AppCompatActivity implements UpdateActionCompleteListener {
     private FeedbackMainActivity.ViewsSliderAdapter mAdapter;
     private TextView[] dots;
-    private ArrayList<Integer> layouts;
+    static ArrayList<Integer> layouts;
     private FeedbackMainBinding binding;
     List<ProductModel> mProductToReviewlist;
+
+    UpdateActionCompleteListener mUpdateActionCompleteListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = FeedbackMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
+        mUpdateActionCompleteListener = this;
         readData();
+
     }
 
     private void init() {
@@ -57,40 +62,28 @@ public class FeedbackMainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        layouts = new ArrayList<Integer>();
-        for(int i=0;i<mProductToReviewlist.size();i++){
-            layouts.add(R.layout.feedback_row_layout);
+        setmAdapterViewpager();
+    }
+    public void setmAdapterViewpager(){
+        if(mProductToReviewlist.size() == 0){
+            finish();
+        }else {
+            layouts = new ArrayList<Integer>();
+            for (int i = 0; i < mProductToReviewlist.size(); i++) {
+                layouts.add(R.layout.feedback_row_layout);
+            }
+
+            mAdapter = new FeedbackMainActivity.ViewsSliderAdapter(FeedbackMainActivity.this,mProductToReviewlist, mUpdateActionCompleteListener);
+            binding.viewPager.setAdapter(mAdapter);
+            binding.viewPager.registerOnPageChangeCallback(pageChangeCallback);
+
+            binding.btnNext.setVisibility(View.GONE);
+            binding.btnSkip.setVisibility(View.GONE);
+            binding.viewPager.setUserInputEnabled(false);
+
+            // adding bottom dots
+            addBottomDots(0);
         }
-
-        mAdapter = new FeedbackMainActivity.ViewsSliderAdapter(getApplicationContext());
-        binding.viewPager.setAdapter(mAdapter);
-        binding.viewPager.registerOnPageChangeCallback(pageChangeCallback);
-        binding.btnSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                launchHomeScreen();
-
-            }
-        });
-
-        binding.btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // checking for last page
-                // if last page home screen will be launched
-                int current = getItem(+1);
-                if (current < layouts.size()) {
-                    // move to next screen
-                    binding.viewPager.setCurrentItem(current);
-                } else {
-                    launchHomeScreen();
-                }
-
-            }
-        });
-        // adding bottom dots
-        addBottomDots(0);
     }
 
     private int getItem(int i) {
@@ -147,11 +140,31 @@ public class FeedbackMainActivity extends AppCompatActivity {
             dots[currentPage].setTextColor(colorsActive[currentPage]);
     }
 
+    @Override
+    public void updateAction(boolean isUpdated) {
+        setmAdapterViewpager();
+    }
 
-    public class ViewsSliderAdapter extends RecyclerView.Adapter<FeedbackMainActivity.ViewsSliderAdapter.SliderViewHolder> {
+
+    public static class ViewsSliderAdapter extends RecyclerView.Adapter<FeedbackMainActivity.ViewsSliderAdapter.SliderViewHolder> implements UpdateFeedbackListener{
         Context mcontext;
-        public ViewsSliderAdapter(Context mcontext) {
+        UpdateActionCompleteListener mUpdateActionCompleteListener;
+        List<ProductModel> mProductToReviewlist;
+        CustomindicatorAdapter adapter;
+        UpdateFeedbackListener mUpdateFeedbackListener;
+        int currentViewpagerPos;
+        public ViewsSliderAdapter(Context mcontext, List<ProductModel> mProductToReviewlist, UpdateActionCompleteListener mUpdateActionCompleteListener) {
             this. mcontext = mcontext;
+            this. mUpdateActionCompleteListener = mUpdateActionCompleteListener;
+            this. mProductToReviewlist = mProductToReviewlist;
+            mUpdateFeedbackListener = this;
+        }
+
+        @Override
+        public void updateFeedbackAction(boolean isUpdated, List<IndicatorModel>  mIndicatorModel, int pos, int itemposchnged) {
+            mProductToReviewlist.get(pos);
+            mProductToReviewlist.get(pos).setIndicators(mIndicatorModel);
+            adapter.notifyDataSetChanged();
         }
 
         @NonNull
@@ -162,18 +175,38 @@ public class FeedbackMainActivity extends AppCompatActivity {
             return new FeedbackMainActivity.ViewsSliderAdapter.SliderViewHolder(view);
         }
 
-        public void onBindViewHolder(@NonNull FeedbackMainActivity.ViewsSliderAdapter.SliderViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull FeedbackMainActivity.ViewsSliderAdapter.SliderViewHolder holder,  int position) {
+            currentViewpagerPos = position;
             ProductModel model = mProductToReviewlist.get(position);
             holder.slide_one_title.setText(model.getCategory());
             holder.slide_one_doc.setText(model.getDescription());
             holder.txtName.setText(model.getName()+model.getIndicators().get(0).getId());
-            Glide.with(getApplicationContext()).load(model.getImage_url()).apply(RequestOptions.centerCropTransform()).into(holder.img_icon);
+            Glide.with(mcontext).load(model.getImage_url()).apply(RequestOptions.centerCropTransform()).into(holder.img_icon);
 
             GridLayoutManager gridLayoutManager;
             gridLayoutManager = new GridLayoutManager(mcontext, 2);
             holder.my_recycler_view.setLayoutManager(gridLayoutManager);
             holder.my_recycler_view.setItemAnimator(new DefaultItemAnimator());
-            holder.my_recycler_view.setAdapter(new CustomindicatorAdapter(mcontext,model.getIndicators()));
+            List<IndicatorModel> indicatorslist = model.getIndicators();
+            //UpdateFeedbackListener mUpdateFeedbackListener;
+            adapter = new CustomindicatorAdapter(mcontext,mProductToReviewlist, currentViewpagerPos,mUpdateFeedbackListener);
+            holder.my_recycler_view.setAdapter(adapter);
+            holder.btn_start.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mProductToReviewlist.remove(currentViewpagerPos);
+                    if(mProductToReviewlist.size()>0){
+                        for(ProductModel model :mProductToReviewlist){
+                           for(IndicatorModel indicator: model.getIndicators()){
+                               indicator.setSelectionnumber(0);
+                           }
+                        }
+                    }
+                    mUpdateActionCompleteListener.updateAction(true);
+                }
+            });
+
+
         }
 
         @Override
@@ -190,6 +223,7 @@ public class FeedbackMainActivity extends AppCompatActivity {
             public TextView slide_one_title, slide_one_doc, txtName;
             ImageView img_icon;
             RecyclerView my_recycler_view;
+            Button btn_start;
             public SliderViewHolder(View view) {
                 super(view);
 
@@ -198,6 +232,7 @@ public class FeedbackMainActivity extends AppCompatActivity {
                 txtName = (TextView) view.findViewById(R.id.txtName);
                 img_icon = (ImageView) view.findViewById(R.id.img_icon);
                 my_recycler_view = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+                btn_start = (Button) view.findViewById(R.id.btn_start);
             }
         }
     }
@@ -230,7 +265,7 @@ public class FeedbackMainActivity extends AppCompatActivity {
                 }
             }
         }
-
+        int i=0;
         for (ProductModel c : mProductToReviewlist) {
             List<IndicatorModel> mIndicatorModel = new ArrayList<IndicatorModel>();
             for(IndicatorModel indicaor : c.getIndicators()) {
@@ -241,7 +276,8 @@ public class FeedbackMainActivity extends AppCompatActivity {
                 }
 
             }
-            c.setIndicators(mIndicatorModel);
+            mProductToReviewlist.get(i).setIndicators(mIndicatorModel);
+            i++;
         }
 
         init();
