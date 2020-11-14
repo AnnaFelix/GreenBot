@@ -1,14 +1,17 @@
 package lu.uni.bicslab.greenbot.android.ui.activity.itemmain;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.palette.graphics.Palette;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +33,7 @@ import java.util.List;
 import lu.uni.bicslab.greenbot.android.R;
 import lu.uni.bicslab.greenbot.android.other.CustomAdapter;
 import lu.uni.bicslab.greenbot.android.other.Utils;
+import lu.uni.bicslab.greenbot.android.ui.fragment.compare.CompareActivity;
 import lu.uni.bicslab.greenbot.android.ui.fragment.indicator.IndicatorModel;
 import lu.uni.bicslab.greenbot.android.ui.fragment.indicator.ProductModel;
 
@@ -46,7 +50,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
     String value;
     ProductModel productmodel;
     TextView type_data,description,type_category,type_provider;
-    ImageView header;
+    ImageView header, img_compare;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +62,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
         type_category = findViewById(R.id.type_category);
         type_provider = findViewById(R.id.type_provider);
         header = findViewById(R.id.header);
+        img_compare = findViewById(R.id.img_compare);
         //  Use when your list size is constant for better performance
         recyclerView.setHasFixedSize(true);
 
@@ -88,7 +93,15 @@ public class ItemDetailsActivity extends AppCompatActivity {
         });
 
 
+        img_compare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //finish();
+                Intent i = new Intent(getApplicationContext(), CompareActivity.class);
+                startActivity(i);
 
+            }
+        });
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {

@@ -16,6 +16,10 @@
             android:icon="@android:drawable/ic_notification_overlay"
             android:title="Notification"
             />
-
+        <item
+            android:id="@+id/compare"
+            android:icon="@android:drawable/ic_notification_overlay"
+            android:title="Compare"
+            />
     </group>
 </menu>

@@ -76,6 +76,10 @@
             android:name=".ui.activity.ui.WaitingPageActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.fragment.compare.CompareActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
 
     </application>
 

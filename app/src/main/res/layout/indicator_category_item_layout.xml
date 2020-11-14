@@ -4,8 +4,9 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="3dp"
-    card_view:cardCornerRadius="4dp"
+    android:layout_margin="3dp"
+    card_view:cardCornerRadius="9dp"
+    card_view:cardElevation="2dp"
     >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,8 +43,8 @@
             android:layout_width="@dimen/img_category_size"
             android:layout_height="@dimen/img_category_size"
             android:layout_centerVertical="true"
-            android:background="@drawable/ic_menu_gallery"
-            ></ImageView>
+            android:background="@drawable/ic_menu_gallery">
+        </ImageView>
 
         <TextView
             android:id="@+id/txtDoc"

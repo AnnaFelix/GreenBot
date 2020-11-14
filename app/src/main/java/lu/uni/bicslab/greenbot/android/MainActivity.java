@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -13,7 +12,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
-import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -24,9 +22,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import lu.uni.bicslab.greenbot.android.ui.activity.feedback.FeedbackMainActivity;
-import lu.uni.bicslab.greenbot.android.ui.activity.onbord.OnbordingActivity;
-import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninActivity;
 import lu.uni.bicslab.greenbot.android.ui.activity.scanitem.ScanSelectedItemActivity;
+import lu.uni.bicslab.greenbot.android.ui.fragment.compare.CompareActivity;
 import lu.uni.bicslab.greenbot.android.ui.fragment.home.HomeFragment;
 import lu.uni.bicslab.greenbot.android.ui.fragment.profile.ProfileFragment;
 
@@ -98,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment = null;
-        Toast.makeText(MainActivity.this,""+item.getItemId(), Toast.LENGTH_LONG).show();
+       // Toast.makeText(MainActivity.this,""+item.getItemId(), Toast.LENGTH_LONG).show();
 
         switch (item.getItemId()) {
             case R.id.homemain:

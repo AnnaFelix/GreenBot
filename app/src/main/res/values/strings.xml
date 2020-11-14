@@ -84,9 +84,9 @@ pour chaque produit.</string>
     <string name="recompenses"> Récompenses</string>
     <string name="termes"> Termes et conditions d’utilisation</string>
 
-    <string name="type"> Type</string>
-    <string name="category"> Category</string>
-    <string name="provider"> Provider</string>
+    <string name="type"> Type:</string>
+    <string name="category"> Category"</string>
+    <string name="provider"> Provider"</string>
 
     <string name="bioimporte">Bio importé</string>
     <string name="biolocal">Bio local</string>

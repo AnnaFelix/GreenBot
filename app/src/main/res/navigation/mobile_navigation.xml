@@ -24,6 +24,10 @@
         android:name="lu.uni.bicslab.greenbot.android.ui.fragment.indicator.IndicatorFragment"
         tools:layout="@layout/fragment_indicator"
         />
-
+    <fragment
+        android:id="@+id/fragment_compare"
+        android:name="lu.uni.bicslab.greenbot.android.ui.fragment.compare.CompareActivity"
+        tools:layout="@layout/fragment_comare_layout"
+        />
 
 </navigation>
