@@ -26,6 +26,8 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONObject;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,8 +99,9 @@ public class ItemDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //finish();
-                Intent i = new Intent(getApplicationContext(), CompareActivity.class);
-                startActivity(i);
+                Intent mIntent = new Intent(getApplicationContext(), CompareActivity.class);
+                mIntent.putExtra("key_product", productmodel);
+                startActivity(mIntent);
 
             }
         });

@@ -3,7 +3,7 @@ package lu.uni.bicslab.greenbot.android.ui.fragment.indicator;
 import java.io.Serializable;
 import java.util.List;
 
-public class ProductModel {
+public class ProductModel implements Serializable {
 
     String code;
     String name;

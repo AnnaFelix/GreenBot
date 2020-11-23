@@ -2,7 +2,9 @@ package lu.uni.bicslab.greenbot.android.ui.fragment.indicator;
 
 import androidx.lifecycle.ViewModel;
 
-public class IndicatorModel {
+import java.io.Serializable;
+
+public class IndicatorModel implements Serializable {
 
     String indicator_id;
     String name;
@@ -12,8 +14,9 @@ public class IndicatorModel {
     String id;
     String general_description;
     int selectionnumber = 0;
+    boolean isSelected = false;
 
-    public IndicatorModel(String indicator_id, String name, String icon_name, String indicator_description, String category_id, String id, String general_description, int selectionnumber) {
+    public IndicatorModel(String indicator_id, String name, String icon_name, String indicator_description, String category_id, String id, String general_description, int selectionnumber, boolean isSelected) {
         this.indicator_id = indicator_id;
         this.name = name;
         this.icon_name = icon_name;
@@ -22,6 +25,7 @@ public class IndicatorModel {
         this.id = id;
         this.general_description = general_description;
         this.selectionnumber = selectionnumber;
+        this.isSelected = isSelected;
     }
 
     public String getIndicator_idForProduct() {
@@ -92,5 +96,11 @@ public class IndicatorModel {
         this.selectionnumber = selectionnumber;
     }
 
+    public boolean isSelected() {
+        return isSelected;
+    }
 
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 }

@@ -1,5 +1,6 @@
 package lu.uni.bicslab.greenbot.android.ui.fragment.compare;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -28,6 +29,7 @@ import lu.uni.bicslab.greenbot.android.R;
 import lu.uni.bicslab.greenbot.android.databinding.FeedbackMainBinding;
 import lu.uni.bicslab.greenbot.android.databinding.FragmentComareLayoutBinding;
 import lu.uni.bicslab.greenbot.android.databinding.OnbordingMainLayoutBinding;
+import lu.uni.bicslab.greenbot.android.other.CompareModel;
 import lu.uni.bicslab.greenbot.android.other.Utils;
 import lu.uni.bicslab.greenbot.android.ui.activity.feedback.FeedbackMainActivity;
 import lu.uni.bicslab.greenbot.android.ui.activity.feedback.ProductToReview;
@@ -43,18 +45,18 @@ public class CompareActivity extends AppCompatActivity {
     static ArrayList<Integer> layouts;
     List<ProductModel> mProductToReviewlist;
     private FragmentComareLayoutBinding binding;
-
+    ProductModel modelmain;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = FragmentComareLayoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
         getSupportActionBar().setTitle("Compare");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+         modelmain = (ProductModel)getIntent().getSerializableExtra("key_product");
 
 
         readData();
@@ -94,7 +96,15 @@ public class CompareActivity extends AppCompatActivity {
         binding.layoutDots.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new TextView(getApplicationContext());
-            dots[i].setText(Html.fromHtml("&#8226;"));
+            if(i==0){
+                dots[i].setText(Html.fromHtml("&#8226;"));
+            }else if(i==1){
+                dots[i].setText(Html.fromHtml("&#8226;"));
+            }else if(i==2){
+                dots[i].setText(Html.fromHtml("&#8226;"));
+            }else{
+                dots[i].setText(Html.fromHtml("&#8226;"));
+            }
             dots[i].setTextSize(35);
             dots[i].setTextColor(colorsInactive[currentPage]);
             binding.layoutDots.addView(dots[i]);
@@ -104,7 +114,7 @@ public class CompareActivity extends AppCompatActivity {
             dots[currentPage].setTextColor(colorsActive[currentPage]);
     }
 
-    private void readData(){
+    private void readDataOld(){
         String jsonFileString = lu.uni.bicslab.greenbot.android.other.Utils.getJsonFromAssets(getApplicationContext(), "products_to_review.json");
         Gson gson = new Gson();
         Type listUserType = new TypeToken<List<ProductToReview>>() { }.getType();
@@ -158,17 +168,136 @@ public class CompareActivity extends AppCompatActivity {
         List<IndicatorCategoryModel> mCategoryListmain = gsoncategory.fromJson(jsoncategory, listUserTypecategory);
 
 
-        setmAdapterViewpager(mCategoryListmain);
+        setmAdapterViewpager(mCategoryListmain,null);
 
     }
-    public void setmAdapterViewpager( List<IndicatorCategoryModel> mCategoryListmain){
+    public void setmAdapterViewpager( List<IndicatorCategoryModel> mCategoryListmain, List<CompareModel> mCompareMdellist){
         layouts = new ArrayList<Integer>();
         for (int i = 0; i < mCategoryListmain.size(); i++) {
             layouts.add(R.layout.comare_viewpager_row);
         }
-            mAdapter = new ViewSliderPagerAdapter(getApplicationContext(), mCategoryListmain, layouts);
+            mAdapter = new ViewSliderPagerAdapter(getApplicationContext(), layouts,mCategoryListmain, mCompareMdellist);
             binding.viewPager.setAdapter(mAdapter);
             addBottomDots(0);
+
+    }
+
+    public void readData(){
+
+        List<IndicatorModel> indicatorCategoryList = Utils.getIndicatorsList(getApplicationContext());
+
+        List<ProductModel> productModelList = Utils.getProductToReview(getApplicationContext());
+
+
+
+        //get the items for compare
+        List<CompareModel> compareViewModelList = new ArrayList<>();
+
+        for(ProductModel mProductModel : productModelList){
+            //main products
+            if(modelmain.getType().equals(mProductModel.getType())){
+                //add products
+                //................................................................
+
+                List<IndicatorModel> indCatEnvironmentlist = new ArrayList<>();
+                List<IndicatorModel> indCatSociallist = new ArrayList<>();
+                List<IndicatorModel> indCatGoodGevernanceList = new ArrayList<>();
+                List<IndicatorModel> indCatEconomicList = new ArrayList<>();
+                //................................................................
+
+                for (int j = 0; j < indicatorCategoryList.size(); j++) {
+                    IndicatorModel indicatorModelMain = indicatorCategoryList.get(j);
+
+                    //our data
+                    if (indicatorModelMain.getCategory_id().equals(Utils.ind_cat_environment)) {
+                        indicatorModelMain.setSelected(false);
+
+                        indCatEnvironmentlist.add(indicatorModelMain);
+
+                    } else if (indicatorModelMain.getCategory_id().equals(Utils.ind_cat_social)) {
+                        indicatorModelMain.setSelected(false);
+                        //if (indicatorModelMain.getId().equals(indicator)) {
+                          //  indicatorModelMain.setSelected(true);
+                        //}
+                        indCatSociallist.add(indicatorModelMain);
+                    }else  if (indicatorModelMain.getCategory_id().equals(Utils.ind_cat_good_gevernance)) {
+                        indicatorModelMain.setSelected(false);
+
+                        indCatGoodGevernanceList.add(indicatorModelMain);
+                    } else if (indicatorModelMain.getCategory_id().equals(Utils.ind_cat_economic)){
+                        indicatorModelMain.setSelected(false);
+
+                        indCatEconomicList.add(indicatorModelMain);
+                    }
+
+                }
+                //................................................................
+                CompareModel.CompareItemsModel comparemodel = new CompareModel.CompareItemsModel(indCatEnvironmentlist,
+                        indCatEconomicList,indCatSociallist, indCatGoodGevernanceList);
+                CompareModel mCompareViewModel = new CompareModel(mProductModel,comparemodel);
+                compareViewModelList.add(mCompareViewModel);
+
+                //main
+                for (int j = 0; j < mProductModel.getIndicators().size(); j++) {
+                    String indicator = mProductModel.getIndicators().get(j).getIndicator_id();
+                    String category =  getCategoryIndicator(indicatorCategoryList,indicator);
+                    if (category.equals(Utils.ind_cat_environment)) {
+                        int n=0;
+                        for(IndicatorModel mm:comparemodel.getIndCatEnvironmentlist()){
+                            if (mm.getId().equals(indicator)) {
+                                comparemodel.getIndCatEnvironmentlist().get(n).setSelected(true);
+                            }
+                            n++;
+                        }
+
+                    } else if (category.equals(Utils.ind_cat_social)) {
+                        int n=0;
+                        for(IndicatorModel mm:comparemodel.getIndCatSociallist()){
+                            if (mm.getId().equals(indicator)) {
+                                comparemodel.getIndCatSociallist().get(n).setSelected(true);
+                            }
+                            n++;
+                        }
+                    }else  if (category.equals(Utils.ind_cat_good_gevernance)) {
+                        int n=0;
+                        for(IndicatorModel mm:comparemodel.getIndCatGoodGevernanceList()){
+                            if (mm.getId().equals(indicator)) {
+                                comparemodel.getIndCatGoodGevernanceList().get(n).setSelected(true);
+                            }
+                            n++;
+                        }
+                    } else if (category.equals(Utils.ind_cat_economic)){
+                        int n=0;
+                        for(IndicatorModel mm:comparemodel.getIndCatEconomicList()){
+                            if (mm.getId().equals(indicator)) {
+                                comparemodel.getIndCatEconomicList().get(n).setSelected(true);
+                            }
+                            n++;
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+
+        //category
+        List<IndicatorCategoryModel> mCategoryListmain = Utils.getIndicatorCategoryList(getApplicationContext());
+
+
+        setmAdapterViewpager(mCategoryListmain,compareViewModelList);
+
+    }
+    public String getCategoryIndicator(List<IndicatorModel> model, String id) {
+        String category = Utils.ind_cat_environment;
+        for (int j = 0; j < model.size(); j++) {
+            if (model.get(j).getId().equals(id)) {
+                category = model.get(j).getCategory_id();
+                break;
+            }
+        }
+        return category;
 
     }
 

@@ -19,12 +19,12 @@ import lu.uni.bicslab.greenbot.android.R;
 import lu.uni.bicslab.greenbot.android.other.Utils;
 import lu.uni.bicslab.greenbot.android.ui.fragment.indicator.IndicatorModel;
 
-public class CustomCompareRowAdapter extends RecyclerView.Adapter<CustomCompareRowAdapter.CompareCustomView> {
+public class CustomCompareListRowAdapter extends RecyclerView.Adapter<CustomCompareListRowAdapter.CompareCustomView> {
 
     private List<IndicatorModel> indicatorModel;
     private Context context;
 
-    public CustomCompareRowAdapter(Context context, List<IndicatorModel>  indicatorModel) {
+    public CustomCompareListRowAdapter(Context context, int positionViewpager, List<IndicatorModel>  indicatorModel) {
         this.context = context;
         this.indicatorModel = indicatorModel;
         Log.e("sizzee",""+indicatorModel.size());
@@ -32,14 +32,14 @@ public class CustomCompareRowAdapter extends RecyclerView.Adapter<CustomCompareR
     }
 
     @Override
-    public CustomCompareRowAdapter.CompareCustomView onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CustomCompareListRowAdapter.CompareCustomView onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.comare_item_row, parent, false);
-        return new CustomCompareRowAdapter.CompareCustomView(view);
+        return new CustomCompareListRowAdapter.CompareCustomView(view);
     }
 
     @Override
-    public void onBindViewHolder(CustomCompareRowAdapter.CompareCustomView holder, int position) {
+    public void onBindViewHolder(CustomCompareListRowAdapter.CompareCustomView holder, int position) {
         IndicatorModel model = indicatorModel.get(position);
         Log.e("model",""+model.getName());
 
