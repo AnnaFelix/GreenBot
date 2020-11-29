@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,7 +47,11 @@ public class CustomCompareListRowAdapter extends RecyclerView.Adapter<CustomComp
         holder.mName.setText(model.getName());
 
         Glide.with(context).load(Utils.GetImage(context,model.getIcon_name())).apply(RequestOptions.centerCropTransform()).into(holder.txt_firstletter);
-
+        if(model.isSelected() == false){
+            holder.layout_main_compare.setVisibility(View.VISIBLE);
+        }else{
+            holder.layout_main_compare.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -59,6 +64,7 @@ public class CustomCompareListRowAdapter extends RecyclerView.Adapter<CustomComp
 
         private TextView mName;
         private ImageView txt_firstletter;
+        private RelativeLayout layout_main_compare;
 
         public CompareCustomView(View itemView) {
             super(itemView);
@@ -66,6 +72,7 @@ public class CustomCompareListRowAdapter extends RecyclerView.Adapter<CustomComp
             Log.e("model","inside");
             mName = itemView.findViewById(R.id.txt_name);
             txt_firstletter = itemView.findViewById(R.id.txt_firstletter);
+            layout_main_compare = itemView.findViewById(R.id.layout_main_compare);
         }
     }
 }

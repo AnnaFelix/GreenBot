@@ -41,4 +41,24 @@
         <item>@color/black_overlay</item>
         <item>@color/black_overlay</item>
     </array>
+    <array name="array_dot_green">
+        <item>@color/lightgreen</item>
+        <item>@color/lightgreen</item>
+        <item>@color/lightgreen</item>
+    </array>
+    <array name="array_dot_yellow">
+        <item>@color/lightyellow</item>
+        <item>@color/lightyellow</item>
+        <item>@color/lightyellow</item>
+    </array>
+    <array name="array_dot_blue">
+        <item>@color/blue</item>
+        <item>@color/blue</item>
+        <item>@color/blue</item>
+    </array>
+    <array name="array_dot_lightorange">
+        <item>@color/lightorange</item>
+        <item>@color/lightorange</item>
+        <item>@color/lightorange</item>
+    </array>
 </resources>

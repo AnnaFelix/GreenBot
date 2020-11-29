@@ -14,12 +14,14 @@ import androidx.appcompat.widget.Toolbar;
 
 import lu.uni.bicslab.greenbot.android.MainActivity;
 import lu.uni.bicslab.greenbot.android.R;
+import lu.uni.bicslab.greenbot.android.other.ServerConnection;
+import lu.uni.bicslab.greenbot.android.other.Utils;
 import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninActivity;
 import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninSelectActivity;
 
-public class WaitingPageActivity extends AppCompatActivity {
-
-
+public class WaitingPageActivity extends AppCompatActivity implements ServerConnection.ServerConnectionListner {
+    ServerConnection.ServerConnectionListner mServerConnection;
+    Button btn_start;
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -31,6 +33,14 @@ public class WaitingPageActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        mServerConnection = this;
+        btn_start = findViewById(R.id.btn_start);
+        btn_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ServerConnection.getDataFetchUserStatus(mServerConnection,getApplicationContext(),"");
+            }
+        });
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +52,8 @@ public class WaitingPageActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onServerConnectionActionComplete(String value) {
 
-
+    }
 }

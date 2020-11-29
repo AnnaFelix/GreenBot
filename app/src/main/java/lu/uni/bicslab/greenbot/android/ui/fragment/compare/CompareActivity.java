@@ -84,27 +84,25 @@ public class CompareActivity extends AppCompatActivity {
         }
     };
 
+
     /*
      * Adds bottom dots indicator
      * */
-    private void addBottomDots(int currentPage) {
+    private void addBottomDotsold(int currentPage) {
         dots = new TextView[layouts.size()];
 
         int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
         int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
+        int green = getResources().getColor(R.color.lightgreen);
+        int blue = getResources().getColor(R.color.lightblue);
+        int yellow = getResources().getColor(R.color.lightyellow);
+        int orange = getResources().getColor(R.color.lightorange);
+
 
         binding.layoutDots.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new TextView(getApplicationContext());
-            if(i==0){
-                dots[i].setText(Html.fromHtml("&#8226;"));
-            }else if(i==1){
-                dots[i].setText(Html.fromHtml("&#8226;"));
-            }else if(i==2){
-                dots[i].setText(Html.fromHtml("&#8226;"));
-            }else{
-                dots[i].setText(Html.fromHtml("&#8226;"));
-            }
+
             dots[i].setTextSize(35);
             dots[i].setTextColor(colorsInactive[currentPage]);
             binding.layoutDots.addView(dots[i]);
@@ -112,6 +110,36 @@ public class CompareActivity extends AppCompatActivity {
 
         if (dots.length > 0)
             dots[currentPage].setTextColor(colorsActive[currentPage]);
+    }
+    private void addBottomDots(int currentPage) {
+        dots = new TextView[layouts.size()];
+
+        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
+        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
+        int[] colorsgreen = getResources().getIntArray(R.array.array_dot_green);
+        int[] colorsblue = getResources().getIntArray(R.array.array_dot_blue);
+        int[] colorsyellow = getResources().getIntArray(R.array.array_dot_yellow);
+        int[] colorsorange = getResources().getIntArray(R.array.array_dot_lightorange);
+
+        binding.layoutDots.removeAllViews();
+        for (int i = 0; i < dots.length; i++) {
+            dots[i] = new TextView(this);
+            dots[i].setText(Html.fromHtml("&#8226;"));
+            dots[i].setTextSize(35);
+            dots[i].setTextColor(colorsInactive[currentPage]);
+            binding.layoutDots.addView(dots[i]);
+        }
+
+        if (currentPage == 0) {
+            dots[currentPage].setTextColor(colorsgreen[currentPage]);
+        }else if (currentPage == 1){
+            dots[currentPage].setTextColor(colorsblue[currentPage]);
+        }else if (currentPage == 2){
+            dots[currentPage].setTextColor(colorsyellow[currentPage]);
+        }else if (currentPage == 3){
+            dots[currentPage].setTextColor(colorsorange[currentPage]);
+        }
+
     }
 
     private void readDataOld(){
@@ -179,6 +207,7 @@ public class CompareActivity extends AppCompatActivity {
             mAdapter = new ViewSliderPagerAdapter(getApplicationContext(), layouts,mCategoryListmain, mCompareMdellist);
             binding.viewPager.setAdapter(mAdapter);
             addBottomDots(0);
+            binding.viewPager.registerOnPageChangeCallback(pageChangeCallback);
 
     }
 

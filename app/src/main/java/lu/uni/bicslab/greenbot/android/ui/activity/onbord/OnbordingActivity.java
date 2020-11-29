@@ -41,13 +41,14 @@ public class OnbordingActivity extends AppCompatActivity {
     private TextView[] dots;
     private int[] layouts;
     private OnbordingMainLayoutBinding binding;
-    public static boolean init = true;
+    public static boolean initLogin = true; //if it is true the
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = OnbordingMainLayoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        init();
+                init();
+
     }
 
     private void init() {
@@ -65,7 +66,7 @@ public class OnbordingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                launchHomeScreen(init);
+                launchHomeScreen(initLogin);
 
             }
         });
@@ -78,11 +79,11 @@ public class OnbordingActivity extends AppCompatActivity {
                 int current = getItem(+1);
                 if (current < layouts.length) {
                     // move to next screen
-                    if(init) {
-                        launchHomeScreen(init);
-                    }else {
-                        binding.viewPager.setCurrentItem(current);
-                    }
+                    //if(initLogin) {
+                        launchHomeScreen(initLogin);
+                    //}else {
+                    //    binding.viewPager.setCurrentItem(current);
+                   // }
                 }
 //                else {
 //                    launchHomeScreen();
@@ -93,7 +94,7 @@ public class OnbordingActivity extends AppCompatActivity {
         // adding bottom dots
         addBottomDots(0);
 
-        if (init) {
+        if (initLogin) {
             binding.viewPager.setPageTransformer(Utils.getTransformer(0));
             binding.viewPager.setCurrentItem(0);
             binding.viewPager.getAdapter().notifyDataSetChanged();
@@ -102,7 +103,7 @@ public class OnbordingActivity extends AppCompatActivity {
             binding.viewPager.setCurrentItem(1);
             binding.viewPager.getAdapter().notifyDataSetChanged();
         }//scroll avoid
-        if(init) {
+        if(initLogin) {
             binding.btnSkip.setVisibility(View.GONE);
             binding.viewPager.setUserInputEnabled(false);
         }else {

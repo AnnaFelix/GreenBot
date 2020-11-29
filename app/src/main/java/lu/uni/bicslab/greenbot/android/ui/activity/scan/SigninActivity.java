@@ -14,15 +14,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import lu.uni.bicslab.greenbot.android.MainActivity;
 import lu.uni.bicslab.greenbot.android.R;
 import lu.uni.bicslab.greenbot.android.other.Profile;
+import lu.uni.bicslab.greenbot.android.other.ServerConnection;
 import lu.uni.bicslab.greenbot.android.other.Utils;
 import lu.uni.bicslab.greenbot.android.ui.activity.onbord.OnbordingActivity;
 
-public class SigninActivity extends AppCompatActivity {
+public class SigninActivity extends AppCompatActivity implements ServerConnection.ServerConnectionListner {
 
    Button login;
    public static final int RC_BARCODE_CAPTURE = 9001;
    EditText signin_id;
    String id;
+    ServerConnection.ServerConnectionListner mServerConnectionListner;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -32,6 +35,9 @@ public class SigninActivity extends AppCompatActivity {
         setContentView(R.layout.activity_siginin);
         login = (Button) findViewById(R.id.tx_login);
         signin_id = (EditText) findViewById(R.id.signin_id);
+
+        mServerConnectionListner = this;
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +57,7 @@ public class SigninActivity extends AppCompatActivity {
                     profile.setLogedin(Utils.user_loggedin);
                     Utils.saveProfile(getApplicationContext(),profile);
                     Intent intent = new Intent(SigninActivity.this, OnbordingActivity.class);
+                    intent.putExtra("logintype",false);//
                     startActivityForResult(intent, RC_BARCODE_CAPTURE);
                 }
             }
@@ -76,5 +83,15 @@ public class SigninActivity extends AppCompatActivity {
         else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    @Override
+    public void onServerConnectionActionComplete(String value) {
+
+
+    }
+
+    public void onpostRequestUserAccess(){
+        ServerConnection.postRequestUserAccess(getApplicationContext(), mServerConnectionListner);
     }
 }

@@ -9,6 +9,12 @@
     android:padding="5dp"
     tools:background="@android:color/white"
     tools:ignore="RtlSymmetry">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/txt_firstletter"
@@ -31,5 +37,12 @@
             android:fontFamily="sans-serif-medium"
             tools:targetApi="jelly_bean"
             tools:text="Nougat"/>
-
+        </RelativeLayout>
+    </FrameLayout>
+    <RelativeLayout
+        android:id="@+id/layout_main_compare"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#33000000">
+    </RelativeLayout>
 </RelativeLayout>

@@ -11,6 +11,7 @@ import android.widget.Button;
 import lu.uni.bicslab.greenbot.android.MainActivity;
 import lu.uni.bicslab.greenbot.android.R;
 import lu.uni.bicslab.greenbot.android.other.Profile;
+import lu.uni.bicslab.greenbot.android.other.ServerConnection;
 import lu.uni.bicslab.greenbot.android.other.Utils;
 import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninActivity;
 import lu.uni.bicslab.greenbot.android.ui.activity.ui.WaitingPageActivity;
@@ -30,12 +31,14 @@ public class OnbordStartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_onbord_start);
         btn_start = (Button) findViewById(R.id.btn_start);
 
+        postRequestUserAccess();
 
         // Set up the user interaction to manually show or hide the system UI.
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Intent i = new Intent(OnbordStartActivity.this, SelectImpotlocalFragment.class);
+
                 Profile profile = Utils.readProfileData(getApplicationContext());
                 if(profile!=null && profile.isLogedin()==Utils.user_loggedin){
                     Intent i = new Intent(OnbordStartActivity.this, MainActivity.class);
@@ -43,8 +46,9 @@ public class OnbordStartActivity extends AppCompatActivity {
                 }else if(profile!=null &&  profile.isLogedin()==Utils.user_underconsideration){
                     Intent i = new Intent(OnbordStartActivity.this, WaitingPageActivity.class);
                     startActivity(i);
-                }else {
-                    OnbordingActivity.init=true;
+                }
+                else {
+                    OnbordingActivity.initLogin=false;//true - first time login //false - first time going to main page after response from server
                     Intent i = new Intent(OnbordStartActivity.this, SigninActivity.class);
                     startActivity(i);
                 }
@@ -52,6 +56,14 @@ public class OnbordStartActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void postRequestUserAccess(){
+        //ServerConnection.postRequestUserAccess(OnbordStartActivity.this,null);//working
+        //ServerConnection.getDataFetchUserStatus(OnbordStartActivity.this,"12345678");//working
+        //ServerConnection.getDataGetBoughtProducts(OnbordStartActivity.this,"12345678");//working
+        //ServerConnection.postPostMonitoringData(OnbordStartActivity.this);//working
+        //ServerConnection.postPostProductReview(OnbordStartActivity.this);//working
     }
 
 

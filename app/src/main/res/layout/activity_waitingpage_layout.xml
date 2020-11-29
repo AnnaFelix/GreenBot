@@ -12,10 +12,20 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
     <TextView
+        android:id="@+id/text_wait"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/accountconsideration"
         style="@style/textdatastyle"></TextView>
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/text_wait"
+        android:layout_marginTop="@dimen/padding"
+        android:text="Retry"
+        style="@style/bluebuton"></Button>
 
 </RelativeLayout>
