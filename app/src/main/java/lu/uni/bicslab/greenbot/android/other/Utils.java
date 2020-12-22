@@ -35,6 +35,7 @@ public class Utils {
     public static final int user_underconsideration = 1;
     public static final int user_notloggedin = 0;
     public static final int user_loggedin = 2;
+    public static final int user_loggedin_firsttime = 3;
 
 
     public static final String ind_cat_environment = "ind_cat_environment";

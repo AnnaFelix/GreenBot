@@ -1,6 +1,9 @@
 package lu.uni.bicslab.greenbot.android.ui.fragment.compare;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,12 +48,20 @@ public class CustomCompareListRowAdapter extends RecyclerView.Adapter<CustomComp
         Log.e("model",""+model.getName());
 
         holder.mName.setText(model.getName());
+        holder.layout_main_compare.setVisibility(View.INVISIBLE);
 
         Glide.with(context).load(Utils.GetImage(context,model.getIcon_name())).apply(RequestOptions.centerCropTransform()).into(holder.txt_firstletter);
         if(model.isSelected() == false){
-            holder.layout_main_compare.setVisibility(View.VISIBLE);
+            holder.mName.setTextColor(Color.GRAY);
+            // Apply grayscale filter
+            ColorMatrix matrix = new ColorMatrix();
+            matrix.setSaturation(0);
+            ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+            holder.txt_firstletter.setColorFilter(filter);
         }else{
-            holder.layout_main_compare.setVisibility(View.GONE);
+           // holder.layout_main_compare.setVisibility(View.GONE);
+            holder.mName.setTextColor(Color.BLACK);
+
         }
     }
 

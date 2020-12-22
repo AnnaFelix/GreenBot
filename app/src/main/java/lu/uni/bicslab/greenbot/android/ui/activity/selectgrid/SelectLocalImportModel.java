@@ -11,10 +11,13 @@ public class SelectLocalImportModel {
 
     String title;
     Drawable image;
+    boolean selected;
 
-    public SelectLocalImportModel(String title, Drawable image) {
+
+    public SelectLocalImportModel(String title, Drawable image, boolean selected) {
         this.title = title;
         this.image = image;
+        this.selected = selected;
     }
 
     public String getTitle() {
@@ -31,6 +34,14 @@ public class SelectLocalImportModel {
 
     public void setImage(Drawable image) {
         this.image = image;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
     public  static  String[] getTitle(Context mcontext){

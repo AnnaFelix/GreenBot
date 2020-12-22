@@ -122,35 +122,7 @@
     </LinearLayout>
 
 
-    <RelativeLayout
-        android:id="@+id/map"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/type"
-        android:layout_marginTop="@dimen/padding"
-        android:layout_height="200dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/img_main"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            card_view:cardCornerRadius="9dp"
-            >
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/map_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            tools:ignore="MissingClass">
-        </com.google.android.gms.maps.MapView>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/map">
-
-        </ImageView>
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
 </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/scrollableview"

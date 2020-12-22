@@ -58,8 +58,8 @@ public class ServerConnection {
             @Override
             public void onResponse(String response) {
                 Log.e("response",response);
-                Toast.makeText(mContext,"response"+response,Toast.LENGTH_SHORT).show();
-                mServerConnectionListner.onServerConnectionActionComplete(response);
+                //Toast.makeText(mContext,"response"+response,Toast.LENGTH_SHORT).show();
+               // mServerConnectionListner.onServerConnectionActionComplete(response);
                 try {
                     JSONObject object=new JSONObject(response);
                     JSONArray array=object.getJSONArray("users");
@@ -72,7 +72,7 @@ public class ServerConnection {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("error",error.toString());
-                Toast.makeText(mContext,"Error getting response",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(mContext,"Error getting response",Toast.LENGTH_SHORT).show();
             }
         });
         requestQueue.add(request);
@@ -81,15 +81,15 @@ public class ServerConnection {
     public static void getDataFetchUserStatus(final ServerConnectionListner mServerConnectionListner, final Context mContext, String userid){//working
         RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         try {
-            String url = BASIC_URL+fetch_user_status+userid;
+            String url = BASIC_URL+fetch_user_status+userid+"/";
             Log.e("url",""+url);
             JSONObject object = new JSONObject();
             StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Log.e("response",response);
-                    Toast.makeText(mContext,"response"+response,Toast.LENGTH_SHORT).show();
-                    mServerConnectionListner.onServerConnectionActionComplete(response);
+                   // Toast.makeText(mContext,"response"+response,Toast.LENGTH_SHORT).show();
+                    //mServerConnectionListner.onServerConnectionActionComplete(response);
                     try {
                         JSONObject object=new JSONObject(response);
                         JSONArray array=object.getJSONArray("users");
@@ -102,7 +102,7 @@ public class ServerConnection {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.e("error",error.toString());
-                    Toast.makeText(mContext,"Error getting response",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(mContext,"Error getting response",Toast.LENGTH_SHORT).show();
                 }
             });
             requestQueue.add(request);
@@ -137,7 +137,7 @@ public class ServerConnection {
             @Override
             public void onResponse(String response) {
                 Log.e("response",response);
-                Toast.makeText(mContext,"response"+response,Toast.LENGTH_SHORT).show();
+               // Toast.makeText(mContext,"response"+response,Toast.LENGTH_SHORT).show();
 
                 try {
                     JSONObject object=new JSONObject(response);
@@ -151,7 +151,7 @@ public class ServerConnection {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("error",error.toString());
-                Toast.makeText(mContext,"Error getting response",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(mContext,"Error getting response",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -191,7 +191,7 @@ public class ServerConnection {
             @Override
             public void onResponse(String response) {
                 Log.e("response",response);
-                Toast.makeText(mContext,"response"+response,Toast.LENGTH_SHORT).show();
+               // Toast.makeText(mContext,"response"+response,Toast.LENGTH_SHORT).show();
 
                 try {
                     JSONObject object=new JSONObject(response);
@@ -205,7 +205,7 @@ public class ServerConnection {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("error",error.toString());
-                Toast.makeText(mContext,"Error getting response",Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(mContext,"Error getting response",Toast.LENGTH_SHORT).show();
             }
         });
         requestQueue.add(request);

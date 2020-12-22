@@ -14,10 +14,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import lu.uni.bicslab.greenbot.android.MainActivity;
 import lu.uni.bicslab.greenbot.android.R;
+import lu.uni.bicslab.greenbot.android.other.Profile;
 import lu.uni.bicslab.greenbot.android.other.ServerConnection;
 import lu.uni.bicslab.greenbot.android.other.Utils;
-import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninActivity;
-import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninSelectActivity;
+
 
 public class WaitingPageActivity extends AppCompatActivity implements ServerConnection.ServerConnectionListner {
     ServerConnection.ServerConnectionListner mServerConnection;
@@ -35,10 +35,18 @@ public class WaitingPageActivity extends AppCompatActivity implements ServerConn
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         mServerConnection = this;
         btn_start = findViewById(R.id.btn_start);
+
+
+
+
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ServerConnection.getDataFetchUserStatus(mServerConnection,getApplicationContext(),"");
+                Profile profileData = Utils.readProfileData(getApplicationContext());
+                profileData.setLogedin(Utils.user_loggedin_firsttime);
+                Utils.saveProfile(getApplicationContext(),profileData);
+                finish();
             }
         });
 

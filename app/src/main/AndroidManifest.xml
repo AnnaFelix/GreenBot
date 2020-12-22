@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
+        android:windowSoftInputMode="adjustPan|adjustResize"
         android:theme="@style/AppTheme">
+
        <activity
             android:name=".ui.activity.scan.SigninSelectActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -63,6 +65,7 @@
             android:name=".ui.activity.feedback.FeedbackMainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_onbording"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.activity.scanitem.ScanSelectedItemActivity"
@@ -83,6 +86,26 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme" />
 
+        <activity
+            android:name=".ui.activity.fromprofile.ProductConsultActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.fromprofile.ProductsScannerActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.fromprofile.RecompensesActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.fromprofile.RetourClientActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.fromprofile.TermesAndConditionActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

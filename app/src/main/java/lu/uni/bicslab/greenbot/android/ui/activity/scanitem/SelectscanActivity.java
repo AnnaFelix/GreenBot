@@ -44,7 +44,6 @@ import lu.uni.bicslab.greenbot.android.barcoderead.CameraSource;
 import lu.uni.bicslab.greenbot.android.barcoderead.CameraSourcePreview;
 import lu.uni.bicslab.greenbot.android.barcoderead.GraphicOverlay;
 import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninActivity;
-import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninSelectActivity;
 
 public class SelectscanActivity extends AppCompatActivity implements BarcodeGraphicTracker.BarcodeUpdateListener {
     private static final String TAG = "Barcode-reader";

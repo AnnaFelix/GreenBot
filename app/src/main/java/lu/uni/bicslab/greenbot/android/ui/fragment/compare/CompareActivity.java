@@ -46,6 +46,7 @@ public class CompareActivity extends AppCompatActivity {
     List<ProductModel> mProductToReviewlist;
     private FragmentComareLayoutBinding binding;
     ProductModel modelmain;
+    int currentPagemain;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,9 @@ public class CompareActivity extends AppCompatActivity {
 
 
         readData();
+
+
+
     }
 
     /*
@@ -76,13 +80,19 @@ public class CompareActivity extends AppCompatActivity {
                 // last page. make button text to GOT IT
                 binding.btnNext.setText("start");
                 binding.btnSkip.setVisibility(View.GONE);
-            } else {
+            } else if(position == (dots.length-1 )){
+                binding.btnNext.setText("Finish");
+                binding.btnSkip.setVisibility(View.VISIBLE);
+            }
+            else {
                 // still pages are left
                 binding.btnNext.setText("next");
                 binding.btnSkip.setVisibility(View.VISIBLE);
             }
         }
     };
+
+
 
 
     /*
@@ -113,7 +123,7 @@ public class CompareActivity extends AppCompatActivity {
     }
     private void addBottomDots(int currentPage) {
         dots = new TextView[layouts.size()];
-
+        currentPagemain = currentPage;
         int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
         int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
         int[] colorsgreen = getResources().getIntArray(R.array.array_dot_green);
@@ -139,6 +149,23 @@ public class CompareActivity extends AppCompatActivity {
         }else if (currentPage == 3){
             dots[currentPage].setTextColor(colorsorange[currentPage]);
         }
+        binding.btnSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+        binding.btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int cout =0;
+                binding.viewPager.setCurrentItem(currentPagemain+1);
+                if(binding.btnNext.getText().equals("Finish")){
+                    finish();
+                }
+            }
+        });
 
     }
 
@@ -199,6 +226,7 @@ public class CompareActivity extends AppCompatActivity {
         setmAdapterViewpager(mCategoryListmain,null);
 
     }
+
     public void setmAdapterViewpager( List<IndicatorCategoryModel> mCategoryListmain, List<CompareModel> mCompareMdellist){
         layouts = new ArrayList<Integer>();
         for (int i = 0; i < mCategoryListmain.size(); i++) {
@@ -216,8 +244,6 @@ public class CompareActivity extends AppCompatActivity {
         List<IndicatorModel> indicatorCategoryList = Utils.getIndicatorsList(getApplicationContext());
 
         List<ProductModel> productModelList = Utils.getProductToReview(getApplicationContext());
-
-
 
         //get the items for compare
         List<CompareModel> compareViewModelList = new ArrayList<>();

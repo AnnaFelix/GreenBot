@@ -178,9 +178,10 @@ public class FeedbackMainActivity extends AppCompatActivity implements UpdateAct
         public void onBindViewHolder(@NonNull FeedbackMainActivity.ViewsSliderAdapter.SliderViewHolder holder,  int position) {
             currentViewpagerPos = position;
             ProductModel model = mProductToReviewlist.get(position);
-            holder.slide_one_title.setText(model.getCategory());
+            //holder.slide_one_title.setText(model.getCategory());
+            //holder.slide_one_title.setVisibility(View.INVISIBLE);
             holder.slide_one_doc.setText(model.getDescription());
-            holder.txtName.setText(model.getName()+model.getIndicators().get(0).getId());
+            holder.txtName.setText(model.getName());
             Glide.with(mcontext).load(model.getImage_url()).apply(RequestOptions.centerCropTransform()).into(holder.img_icon);
 
             GridLayoutManager gridLayoutManager;
@@ -188,6 +189,17 @@ public class FeedbackMainActivity extends AppCompatActivity implements UpdateAct
             holder.my_recycler_view.setLayoutManager(gridLayoutManager);
             holder.my_recycler_view.setItemAnimator(new DefaultItemAnimator());
             List<IndicatorModel> indicatorslist = model.getIndicators();
+                // List<IndicatorModel> indi =  mProductToReviewlist.get(currentViewpagerPos).getIndicators();
+                    IndicatorModel modeltoadd = new IndicatorModel("indicator_price", "Price", "Price",
+                            "indicator_price", "category_id", "id",
+                            "general_description", 0, false);
+                    mProductToReviewlist.get(currentViewpagerPos).getIndicators().add(modeltoadd);
+                    IndicatorModel modeltoaddedittext = new IndicatorModel("indicator_review", "Review", "Review",
+                    "indicator_Review", "category_id", "id",
+                    "general_description", 0, false);
+                    mProductToReviewlist.get(currentViewpagerPos).getIndicators().add(modeltoaddedittext);
+
+
             //UpdateFeedbackListener mUpdateFeedbackListener;
             adapter = new CustomindicatorAdapter(mcontext,mProductToReviewlist, currentViewpagerPos,mUpdateFeedbackListener);
             holder.my_recycler_view.setAdapter(adapter);
@@ -205,15 +217,11 @@ public class FeedbackMainActivity extends AppCompatActivity implements UpdateAct
                     mUpdateActionCompleteListener.updateAction(true);
                 }
             });
-
-
         }
-
         @Override
         public int getItemViewType(int position) {
             return layouts.get(position);
         }
-
         @Override
         public int getItemCount() {
             return layouts.size();

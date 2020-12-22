@@ -88,6 +88,7 @@
         android:layout_margin="@dimen/slide_title"
         >
         <RelativeLayout
+            android:id="@+id/layout_produitsscanner"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_marginTop="30dp"
@@ -109,10 +110,10 @@
 
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/layout_produitsconsultes"
             android:layout_marginTop="25dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content">
 
             <TextView
@@ -130,6 +131,7 @@
                 android:src="@drawable/arrow_right"/>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/layout_retourclient"
             android:layout_marginTop="25dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -150,6 +152,7 @@
                 android:src="@drawable/arrow_right"/>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/layout_recompenses"
             android:layout_marginTop="25dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -169,6 +172,7 @@
                 android:text="@string/recompenses"/>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/layout_teams"
             android:layout_marginTop="25dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"

@@ -46,26 +46,32 @@ public class SelectIGridTwoActivity extends AppCompatActivity {
         data = new ArrayList<SelectLocalImportModel>();
         for (int i = 0; i < SelectLocalImportModel.getTitle(getApplicationContext()).length; i++) {
             data.add(new SelectLocalImportModel(SelectLocalImportModel.getTitle2(getApplicationContext())[i],
-                    SelectLocalImportModel.getimage2(getApplicationContext())[i]
+                    SelectLocalImportModel.getimage2(getApplicationContext())[i],false
 
             ));
         }
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                Profile profile = Utils.readProfileData(getApplicationContext());
-                if(profile!=null && profile.isLogedin()==Utils.user_loggedin){
-                    Intent i = new Intent(SelectIGridTwoActivity.this, MainActivity.class);
-                    startActivity(i);
-                }else {
-                    Intent i = new Intent(SelectIGridTwoActivity.this, WaitingPageActivity.class);
-                    startActivity(i);
-                }
+                actionComlete();
 
             }
         });
-        adapter = new CustomGridAdapter(data);
+        adapter = new CustomGridAdapter(getApplicationContext(),data);
         recyclerView.setAdapter(adapter);
+    }
+    void actionComlete(){
+        finish();
+        Profile profile = Utils.readProfileData(getApplicationContext());
+        if(profile!=null && profile.isLogedin()==Utils.user_loggedin){
+            Intent i = new Intent(SelectIGridTwoActivity.this, MainActivity.class);
+            startActivity(i);
+        }else {
+            Profile profileData = Utils.readProfileData(getApplicationContext());
+            profileData.setLogedin(Utils.user_underconsideration);
+            Utils.saveProfile(getApplicationContext(),profileData);
+            Intent i = new Intent(SelectIGridTwoActivity.this, WaitingPageActivity.class);
+            startActivity(i);
+        }
     }
 }

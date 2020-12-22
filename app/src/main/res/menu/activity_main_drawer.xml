@@ -13,13 +13,15 @@
 
         <item
             android:id="@+id/notification"
-            android:icon="@android:drawable/ic_notification_overlay"
+            android:icon="@drawable/notification"
             android:title="Notification"
+            app:actionLayout="@layout/menu_counter"
             />
-        <item
-            android:id="@+id/compare"
-            android:icon="@android:drawable/ic_notification_overlay"
-            android:title="Compare"
-            />
+<!--       ` <item-->
+<!--            android:id="@+id/compare"-->
+<!--            android:icon="@drawable/compare_icon"-->
+<!--            android:title="Compare"-->
+<!--            app:actionLayout="@layout/menu_counter"-->
+<!--            />`-->
     </group>
 </menu>

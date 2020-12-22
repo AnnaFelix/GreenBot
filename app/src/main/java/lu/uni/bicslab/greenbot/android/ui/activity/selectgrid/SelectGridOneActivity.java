@@ -39,7 +39,7 @@ public class SelectGridOneActivity extends AppCompatActivity {
         data = new ArrayList<SelectLocalImportModel>();
         for (int i = 0; i < SelectLocalImportModel.getTitle(getApplicationContext()).length; i++) {
             data.add(new SelectLocalImportModel(SelectLocalImportModel.getTitle(getApplicationContext())[i],
-                    SelectLocalImportModel.getimage(getApplicationContext())[i]
+                    SelectLocalImportModel.getimage(getApplicationContext())[i],false
 
             ));
         }
@@ -51,7 +51,8 @@ public class SelectGridOneActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        adapter = new CustomGridAdapter(data);
+        adapter = new CustomGridAdapter(getApplicationContext(), data);
         recyclerView.setAdapter(adapter);
+
     }
 }

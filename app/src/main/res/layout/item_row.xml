@@ -12,8 +12,8 @@
     <ImageView
         android:id="@+id/txt_firstletter"
         style="@style/TextAppearance.AppCompat.Headline"
-        android:layout_width="@dimen/indi_image"
-        android:layout_height="@dimen/indi_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/padding"
        />
@@ -39,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/txt_firstletter">
 
         <TextView
@@ -48,7 +49,6 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:layout_centerVertical="true"
-
             tools:text="A family of confections made with sugar or honey, roasted nuts, whipped egg whites, and sometimes chopped candied fruit. The consistency of nougat is chewy, and it is used in a variety of candy bars and chocolates."/>
 
 

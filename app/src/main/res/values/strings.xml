@@ -76,6 +76,7 @@ pour chaque produit.</string>
     <string name="nodata">No Data!</string>
     <string name="continueff">Continue</string>
     <string name="serialscanner"> Serial Scanner</string>
+    <string name="price">Price</string>
 
     <!-- profile -->
     <string name="productscanner"> Produits scannés</string>

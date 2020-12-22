@@ -3,6 +3,7 @@ package lu.uni.bicslab.greenbot.android.ui.activity.onbord;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,19 +12,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.util.Util;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.List;
 
+import lu.uni.bicslab.greenbot.android.MainActivity;
 import lu.uni.bicslab.greenbot.android.R;
+import lu.uni.bicslab.greenbot.android.other.Profile;
 import lu.uni.bicslab.greenbot.android.ui.activity.feedback.FeedbackMainActivity;
 import lu.uni.bicslab.greenbot.android.ui.activity.feedback.ProductToReview;
 import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninActivity;
@@ -41,11 +46,20 @@ public class OnbordingActivity extends AppCompatActivity {
     private TextView[] dots;
     private int[] layouts;
     private OnbordingMainLayoutBinding binding;
-    public static boolean initLogin = true; //if it is true the
+    Profile profile = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = OnbordingMainLayoutBinding.inflate(getLayoutInflater());
+        profile = lu.uni.bicslab.greenbot.android.other.Utils.readProfileData(getApplicationContext());
+        Log.e("isLogedin ",""+ profile.isLogedin());
+        // if user not logedin show the waiting page
+       /* if(profile.isLogedin() == lu.uni.bicslab.greenbot.android.other.Utils.user_notloggedin){
+            initLogin = true;
+        }else{
+            initLogin = false;
+        }*/
+
         setContentView(binding.getRoot());
                 init();
 
@@ -66,7 +80,7 @@ public class OnbordingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                launchHomeScreen(initLogin);
+                launchHomeScreen(0);
 
             }
         });
@@ -77,10 +91,11 @@ public class OnbordingActivity extends AppCompatActivity {
                 // checking for last page
                 // if last page home screen will be launched
                 int current = getItem(+1);
-                if (current < layouts.length) {
+                if (current <= layouts.length) {
                     // move to next screen
                     //if(initLogin) {
-                        launchHomeScreen(initLogin);
+                    //Toast.makeText(getApplicationContext(), "slides_ended"+current, Toast.LENGTH_LONG).show();
+                    launchHomeScreen(current);
                     //}else {
                     //    binding.viewPager.setCurrentItem(current);
                    // }
@@ -94,7 +109,7 @@ public class OnbordingActivity extends AppCompatActivity {
         // adding bottom dots
         addBottomDots(0);
 
-        if (initLogin) {
+        if (profile.isLogedin()== lu.uni.bicslab.greenbot.android.other.Utils.user_notloggedin) {
             binding.viewPager.setPageTransformer(Utils.getTransformer(0));
             binding.viewPager.setCurrentItem(0);
             binding.viewPager.getAdapter().notifyDataSetChanged();
@@ -103,7 +118,7 @@ public class OnbordingActivity extends AppCompatActivity {
             binding.viewPager.setCurrentItem(1);
             binding.viewPager.getAdapter().notifyDataSetChanged();
         }//scroll avoid
-        if(initLogin) {
+        if(profile.isLogedin()== lu.uni.bicslab.greenbot.android.other.Utils.user_notloggedin) {
             binding.btnSkip.setVisibility(View.GONE);
             binding.viewPager.setUserInputEnabled(false);
         }else {
@@ -116,16 +131,29 @@ public class OnbordingActivity extends AppCompatActivity {
         return binding.viewPager.getCurrentItem() + i;
     }
 
-    private void launchHomeScreen(boolean init) {
-        //Toast.makeText(this, "slides_ended", Toast.LENGTH_LONG).show();
-        if(init){
+    private void launchHomeScreen(int count) {
+        if(profile.isLogedin()== lu.uni.bicslab.greenbot.android.other.Utils.user_notloggedin){
             Intent i = new Intent(this, SelectGridOneActivity.class);
             startActivity(i);
+            finish();
+        }else if (profile.isLogedin()== lu.uni.bicslab.greenbot.android.other.Utils.user_loggedin_firsttime){
+            if(count==2){
+                binding.viewPager.setCurrentItem(count+1);
+            }else{
+                Profile profileData = lu.uni.bicslab.greenbot.android.other.Utils.readProfileData(getApplicationContext());
+                profileData.setLogedin(lu.uni.bicslab.greenbot.android.other.Utils.user_loggedin);
+                lu.uni.bicslab.greenbot.android.other.Utils.saveProfile(getApplicationContext(),profileData);
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+
         }else{
             Intent i = new Intent(this, SigninActivity.class);
             startActivity(i);
+            finish();
         }
-             finish();
+
 
     }
 

@@ -1,17 +1,26 @@
 package lu.uni.bicslab.greenbot.android;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.ForegroundColorSpan;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -30,7 +39,7 @@ import lu.uni.bicslab.greenbot.android.ui.fragment.profile.ProfileFragment;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
-
+    TextView gallery;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +82,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 return true;
             }
         });
+        //MenuItem menuItem = navigationView.getMenu().findItem(R.id.notification);
+        //gallery = (TextView)menuItem.getActionView();
+        //initializeCountDrawer(gallery);
+        int count = 2;
+        TextView view = (TextView) navigationView.getMenu().findItem(R.id.notification).getActionView();
+        view.setText(count > 0 ? String.valueOf(count) : null);
 
     }
 

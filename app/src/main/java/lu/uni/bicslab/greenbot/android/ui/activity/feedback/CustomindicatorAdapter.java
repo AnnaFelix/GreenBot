@@ -1,22 +1,18 @@
 package lu.uni.bicslab.greenbot.android.ui.activity.feedback;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.core.widget.CompoundButtonCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -56,16 +52,41 @@ public class CustomindicatorAdapter extends RecyclerView.Adapter<Customindicator
     @Override
     public void onBindViewHolder(final CustomView holder, int positionval) {
          this. data = mProductToReviewlist.get(currentViewpagerPos).getIndicators().get(positionval);
-
-        Drawable img = Utils.GetImage(context,data.getIcon_name());
-        Glide.with(context).load(img).apply(RequestOptions.centerCropTransform()).into(holder.text_title);
+        holder.txt_pos.setVisibility(View.GONE);
         int clickPos = data.getSelectionnumber();
+        if(data.getName().equals("Price")){
+            holder.txt_title.setVisibility(View.VISIBLE);
+            holder.imageView_icon.setVisibility(View.GONE);
+            holder.edit_feedback.setVisibility(View.GONE);
+            holder.txt_title.setText("Price");
+
+        }else  if(data.getName().equals("Review")){
+            holder.txt_title.setVisibility(View.VISIBLE);
+            holder.imageView_icon.setVisibility(View.VISIBLE);
+            if(clickPos == 1 || clickPos == 2) {
+                holder.edit_feedback.setVisibility(View.VISIBLE);
+            }else{
+                holder.edit_feedback.setVisibility(View.GONE);
+
+            }
+            holder.txt_title.setText("Review");
+        }
+        else{
+            holder.edit_feedback.setVisibility(View.GONE);
+            holder.imageView_icon.setVisibility(View.VISIBLE);
+            Drawable img = Utils.GetImage(context,data.getIcon_name());
+            Glide.with(context).load(img).apply(RequestOptions.centerCropTransform()).into(holder.imageView_icon);
+        }
+
         if(clickPos == 1){
-           holder.item_row.setBackgroundColor(Color.BLUE);
+           //holder.item_row.setBackgroundColor(Color.BLUE);
+            holder.item_row.setBackground(context.getDrawable(R.drawable.green_tick));
         }else if(clickPos == 2 ){
-            holder.item_row.setBackgroundColor(Color.GREEN);
+           // holder.item_row.setBackgroundColor(Color.GREEN);
+            holder.item_row.setBackground(context.getDrawable(R.drawable.org_tick));
         }else {
-            holder.item_row.setBackgroundColor(Color.GRAY);
+            //holder.item_row.setBackgroundColor(Color.GRAY);
+            holder.item_row.setBackground(context.getDrawable(R.drawable.black_tick));
         }
         holder.txt_pos.setText(""+positionval);
         holder.icon_select.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -73,8 +94,6 @@ public class CustomindicatorAdapter extends RecyclerView.Adapter<Customindicator
                                                @Override
                                                public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                                                    //int clickPos = data.getSelectionnumber();
-
-
              }
         });
         holder.layout_main.setOnClickListener(new View.OnClickListener() {
@@ -179,22 +198,26 @@ public class CustomindicatorAdapter extends RecyclerView.Adapter<Customindicator
 
     public static class CustomView extends RecyclerView.ViewHolder {
 
-        private ImageView text_title;
+        private ImageView imageView_icon;
         private CheckBox icon_select;
         private RelativeLayout item_row;
         private TextView txt_pos;
+        private TextView txt_title;
         private RelativeLayout layout_main;
+        private EditText edit_feedback;
 
 
 
         public CustomView(View itemView) {
             super(itemView);
 
-            text_title = itemView.findViewById(R.id.text_title);
+            imageView_icon = itemView.findViewById(R.id.text_title);
             icon_select = itemView.findViewById(R.id.icon_select);
             item_row = itemView.findViewById(R.id.item_row);
             txt_pos = itemView.findViewById(R.id.txt_pos);
+            txt_title = itemView.findViewById(R.id.txt_title);
             layout_main = itemView.findViewById(R.id.layout_main);
+            edit_feedback = itemView.findViewById(R.id.edit_feedback);
 
         }
     }

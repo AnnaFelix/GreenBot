@@ -7,6 +7,10 @@
     android:layout_margin="@dimen/padding"
     android:layout_height="wrap_content"
     android:id="@+id/layout_main">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:id="@+id/idimage">
     <ImageView
         android:id="@+id/text_title"
         android:layout_width="40dp"
@@ -14,18 +18,30 @@
         android:layout_centerVertical="true"
         android:text="@string/review"></ImageView>
     <TextView
-        android:id="@+id/txt_pos"
+        android:id="@+id/txt_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:visibility="gone"
+        android:textStyle="bold"
         android:text="1"></TextView>
+        <TextView
+            android:id="@+id/txt_pos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:textStyle="bold"
+            android:text="1"></TextView>
+
+    </RelativeLayout>
     <RelativeLayout
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:id="@+id/item_row"
-        android:layout_margin="@dimen/padding"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/text_title"
+        android:layout_marginLeft="@dimen/padding"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/idimage"
         >
         <CheckBox
             android:id="@+id/icon_select"
@@ -40,6 +56,15 @@
 
         </CheckBox>
     </RelativeLayout>
+    <EditText
+        android:id="@+id/edit_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:layout_below="@+id/idimage"
+        android:lines="2">
+
+    </EditText>
 
 
 </RelativeLayout>

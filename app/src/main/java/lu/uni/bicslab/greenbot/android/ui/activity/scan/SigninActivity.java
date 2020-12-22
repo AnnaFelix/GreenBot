@@ -54,11 +54,12 @@ public class SigninActivity extends AppCompatActivity implements ServerConnectio
                 }else{
                     Profile profile = new Profile();
                     profile.setSerialscanner(id);
-                    profile.setLogedin(Utils.user_loggedin);
+                    profile.setLogedin(Utils.user_notloggedin);
                     Utils.saveProfile(getApplicationContext(),profile);
                     Intent intent = new Intent(SigninActivity.this, OnbordingActivity.class);
                     intent.putExtra("logintype",false);//
-                    startActivityForResult(intent, RC_BARCODE_CAPTURE);
+                   // startActivityForResult(intent, RC_BARCODE_CAPTURE);
+                    startActivity(intent);
                 }
             }
         });
