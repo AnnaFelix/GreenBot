@@ -36,7 +36,7 @@ import lu.uni.bicslab.greenbot.android.ui.activity.scan.SigninActivity;
 import lu.uni.bicslab.greenbot.android.ui.fragment.indicator.IndicatorModel;
 import lu.uni.bicslab.greenbot.android.ui.fragment.indicator.ProductModel;
 
-
+//feedback view
 public class FeedbackMainActivity extends AppCompatActivity implements UpdateActionCompleteListener {
     private FeedbackMainActivity.ViewsSliderAdapter mAdapter;
     private TextView[] dots;
