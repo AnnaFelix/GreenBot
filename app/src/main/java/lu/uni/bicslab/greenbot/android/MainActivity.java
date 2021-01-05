@@ -111,18 +111,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment = null;
        // Toast.makeText(MainActivity.this,""+item.getItemId(), Toast.LENGTH_LONG).show();
-
+        //main home
         switch (item.getItemId()) {
             case R.id.homemain:
                 fragment = new HomeFragment();
                 break;
-
+           //scanner class added
             case R.id.scanner:
                 //fragment = new HomeFragment();
                 Intent i = new Intent(this, ScanSelectedItemActivity.class);
                 startActivity(i);
                 break;
-
+            //profile added
             case R.id.profile:
                 fragment = new ProfileFragment();
                 break;

@@ -17,7 +17,7 @@ import lu.uni.bicslab.greenbot.android.R;
 public class SlideshowFragment extends Fragment {
 
     private SlideshowViewModel slideshowViewModel;
-
+    //main views
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         slideshowViewModel =
