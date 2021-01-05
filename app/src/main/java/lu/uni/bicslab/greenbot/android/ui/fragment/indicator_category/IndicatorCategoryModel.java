@@ -11,6 +11,7 @@ public class IndicatorCategoryModel {
     String icon_name;
     String description;
 
+
     public IndicatorCategoryModel(String name, String description) {
         this.name = name;
         this.icon_name = String.valueOf(name.charAt(0));

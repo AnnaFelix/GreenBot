@@ -66,24 +66,24 @@ public class CustomGridAdapter extends RecyclerView.Adapter<CustomGridAdapter.My
 
         text_title.setText(dataModel.get(position).getTitle());
         imageview_icon.setBackground(dataModel.get(position).getImage());
-        if(dataModel.get(position).isSelected()){
-            if(dataModel.get(position).getTitle().startsWith("Soute")){
+        if (dataModel.get(position).isSelected()) {
+            if (dataModel.get(position).getTitle().startsWith("Soute")) {
                 cardview.setBackgroundColor(mContext.getResources().getColor(R.color.lightyellow));
-            }else if(dataModel.get(position).getTitle().startsWith("Conn")){
+            } else if (dataModel.get(position).getTitle().startsWith("Conn")) {
                 cardview.setBackgroundColor(mContext.getResources().getColor(R.color.lightgreen));
 
-            }else if(dataModel.get(position).getTitle().startsWith("Encour")) {
+            } else if (dataModel.get(position).getTitle().startsWith("Encour")) {
                 cardview.setBackgroundColor(mContext.getResources().getColor(R.color.lightorange));
 
-            }else if(dataModel.get(position).getTitle().startsWith("Privi")){
+            } else if (dataModel.get(position).getTitle().startsWith("Privi")) {
                 cardview.setBackgroundColor(mContext.getResources().getColor(R.color.lightblue));
 
-            }else if(dataModel.get(position).getTitle().startsWith("Conve")){
+            } else if (dataModel.get(position).getTitle().startsWith("Conve")) {
                 cardview.setBackgroundColor(mContext.getResources().getColor(R.color.blue_));
-            }else {
+            } else {
                 cardview.setBackgroundColor(mContext.getResources().getColor(R.color.lightgreen));
             }
-        }else {
+        } else {
             cardview.setBackgroundColor(Color.WHITE);
 
         }

@@ -14,6 +14,7 @@ import lu.uni.bicslab.greenbot.android.other.Utils;
 
 public class ProductConsultActivity extends AppCompatActivity implements ServerConnection.ServerConnectionListner {
 
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);

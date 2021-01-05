@@ -51,8 +51,9 @@ public class ItemDetailsActivity extends AppCompatActivity {
     private boolean appBarExpanded = true;
     String value;
     ProductModel productmodel;
-    TextView type_data,description,type_category,type_provider;
+    TextView type_data, description, type_category, type_provider;
     ImageView header, img_compare;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,6 +162,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     private List<IndicatorModel> fillDummyData() {
         String jsonFileStringIndicator = Utils.getJsonFromAssets(getApplicationContext(), "indicators.json");
         String jsonFileStringProduct = Utils.getJsonFromAssets(getApplicationContext(), "products.json");
@@ -192,7 +194,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
     }
 
-    private void setview(List<IndicatorModel>  indicatorModel) {
+    private void setview(List<IndicatorModel> indicatorModel) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
@@ -202,7 +204,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
         type_data.setText(productmodel.getType());
         description.setText(productmodel.getDescription());
         type_category.setText(productmodel.getCategory());
-        type_provider .setText(productmodel.getProvider());
+        type_provider.setText(productmodel.getProvider());
         header = findViewById(R.id.header);
         Glide.with(getApplicationContext()).load(productmodel.getImage_url()).apply(RequestOptions.centerCropTransform()).into(header);
     }

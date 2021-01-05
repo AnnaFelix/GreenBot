@@ -18,6 +18,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemHolder> {
         this.celebrityList = celebrityList;
     }
 
+
     @Override
     public ItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())

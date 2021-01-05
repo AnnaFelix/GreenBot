@@ -23,6 +23,7 @@ public class ScanSelectedItemActivity extends AppCompatActivity {
     public static final int RC_BARCODE_CAPTURE = 9001;
     EditText signin_id;
     String id;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -35,19 +36,19 @@ public class ScanSelectedItemActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
+                try {
                     id = signin_id.getText().toString();
-                }catch (Exception e){
-                    id = "" ;
+                } catch (Exception e) {
+                    id = "";
                 }
-                if(id.isEmpty()||id.length()==0) {
+                if (id.isEmpty() || id.length() == 0) {
                     Intent intent = new Intent(ScanSelectedItemActivity.this, SigninSelectActivity.class);
                     startActivityForResult(intent, RC_BARCODE_CAPTURE);
 
-                }else{
+                } else {
 
                     //goto item details activity
-                    Intent intent = new Intent(getApplicationContext() , ItemDetailsActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), ItemDetailsActivity.class);
                     intent.putExtra("code", "2354896578459");
                     intent.putExtra("title", "Honey from Ourdaller");
                     startActivity(intent);
@@ -59,21 +60,19 @@ public class ScanSelectedItemActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.e("TAG", " irequestCode"+requestCode+" resultCode"+resultCode);
+        Log.e("TAG", " irequestCode" + requestCode + " resultCode" + resultCode);
         if (requestCode == RC_BARCODE_CAPTURE) {
             if (data != null) {
                 String requiredValue = data.getStringExtra("barcode");
-                signin_id.setText(""+requiredValue);
-                Log.e("TAG", "Barcode read:final " +requiredValue);
+                signin_id.setText("" + requiredValue);
+                Log.e("TAG", "Barcode read:final " + requiredValue);
             } else {
                 Log.e("TAG", "No barcode captured, intent data is null");
             }
 
-        }
-        else {
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }

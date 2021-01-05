@@ -1,4 +1,5 @@
 package lu.uni.bicslab.greenbot.android.ui.activity.selectgrid;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -39,7 +40,7 @@ public class SelectGridOneActivity extends AppCompatActivity {
         data = new ArrayList<SelectLocalImportModel>();
         for (int i = 0; i < SelectLocalImportModel.getTitle(getApplicationContext()).length; i++) {
             data.add(new SelectLocalImportModel(SelectLocalImportModel.getTitle(getApplicationContext())[i],
-                    SelectLocalImportModel.getimage(getApplicationContext())[i],false
+                    SelectLocalImportModel.getimage(getApplicationContext())[i], false
 
             ));
         }

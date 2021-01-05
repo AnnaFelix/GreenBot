@@ -76,13 +76,13 @@ public class IndicatorAdapter extends RecyclerView.Adapter<IndicatorAdapter.Indi
     }
 
     @Override
-    public void onBindViewHolder( IndicatorItemHolder holder, int position) {
+    public void onBindViewHolder(IndicatorItemHolder holder, int position) {
         final int pos = position;
         holder.txtName.setText(indicatorListFiltered.get(position).getName());
         holder.card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context , ItemDetailsActivity.class);
+                Intent intent = new Intent(context, ItemDetailsActivity.class);
                 intent.putExtra("code", indicatorListFiltered.get(pos).getCode());
                 intent.putExtra("title", indicatorListFiltered.get(pos).getName());
                 context.startActivity(intent);
@@ -133,6 +133,7 @@ public class IndicatorAdapter extends RecyclerView.Adapter<IndicatorAdapter.Indi
             }
         };
     }
+
     class IndicatorItemHolder extends RecyclerView.ViewHolder {
 
         public TextView txtName;

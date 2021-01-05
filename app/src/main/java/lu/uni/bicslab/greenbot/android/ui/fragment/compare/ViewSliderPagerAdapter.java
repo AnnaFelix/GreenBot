@@ -23,7 +23,7 @@ import lu.uni.bicslab.greenbot.android.R;
 import lu.uni.bicslab.greenbot.android.other.CompareModel;
 import lu.uni.bicslab.greenbot.android.ui.fragment.indicator_category.IndicatorCategoryModel;
 
-public  class ViewSliderPagerAdapter extends RecyclerView.Adapter<ViewSliderPagerAdapter.SliderViewHolder> {
+public class ViewSliderPagerAdapter extends RecyclerView.Adapter<ViewSliderPagerAdapter.SliderViewHolder> {
     Context mcontext;
     CustomCompareGridAdapter adapter;
     List<IndicatorCategoryModel> mCategoryList;
@@ -32,11 +32,11 @@ public  class ViewSliderPagerAdapter extends RecyclerView.Adapter<ViewSliderPage
     List<CompareModel> compareModelList;
 
     public ViewSliderPagerAdapter(Context mcontext,
-                                  ArrayList<Integer> layouts,  List<IndicatorCategoryModel> mIndicatorCategoryModel,  List<CompareModel> mCategoryList) {
-        this. mcontext = mcontext;
-        this. compareModelList = mCategoryList;
-        this. mCategoryList = mIndicatorCategoryModel;
-        this. layouts =  layouts;
+                                  ArrayList<Integer> layouts, List<IndicatorCategoryModel> mIndicatorCategoryModel, List<CompareModel> mCategoryList) {
+        this.mcontext = mcontext;
+        this.compareModelList = mCategoryList;
+        this.mCategoryList = mIndicatorCategoryModel;
+        this.layouts = layouts;
     }
 
     @NonNull
@@ -52,7 +52,7 @@ public  class ViewSliderPagerAdapter extends RecyclerView.Adapter<ViewSliderPage
     public void onBindViewHolder(@NonNull SliderViewHolder holder, int position) {
         //ProductModel model = mProductToReviewlist.get(position);
         holder.txt_categoryname.setText(mCategoryList.get(position).getIndicator_name());
-        Log.e("dddd",""+position+mCategoryList.get(position).getIndicator_name());
+        Log.e("dddd", "" + position + mCategoryList.get(position).getIndicator_name());
         Glide.with(mcontext).load(mCategoryList.get(position).getIcon_name()).
                 apply(RequestOptions.centerCropTransform()).into(holder.img_product_icon);
 
@@ -62,7 +62,7 @@ public  class ViewSliderPagerAdapter extends RecyclerView.Adapter<ViewSliderPage
         holder.recycler_viewindicator.setLayoutManager(gridLayoutManager);
         holder.recycler_viewindicator.setItemAnimator(new DefaultItemAnimator());
 
-        adapter = new CustomCompareGridAdapter(mcontext,position, compareModelList);
+        adapter = new CustomCompareGridAdapter(mcontext, position, compareModelList);
         holder.recycler_viewindicator.setAdapter(adapter);
     }
 
@@ -80,6 +80,7 @@ public  class ViewSliderPagerAdapter extends RecyclerView.Adapter<ViewSliderPage
         ImageView img_product_icon;
         RecyclerView recycler_viewindicator;
         TextView txt_categoryname;
+
         public SliderViewHolder(View view) {
             super(view);
 

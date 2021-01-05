@@ -40,22 +40,21 @@ public class OnbordStartActivity extends AppCompatActivity {
                 //Intent i = new Intent(OnbordStartActivity.this, SelectImpotlocalFragment.class);
 
                 Profile profile = Utils.readProfileData(getApplicationContext());
-                if(profile!=null && profile.isLogedin()==Utils.user_loggedin){
+                if (profile != null && profile.isLogedin() == Utils.user_loggedin) {
                     Intent i = new Intent(OnbordStartActivity.this, MainActivity.class);
                     startActivity(i);
-                }else if(profile!=null &&  profile.isLogedin()==Utils.user_underconsideration){
+                } else if (profile != null && profile.isLogedin() == Utils.user_underconsideration) {
                     Intent i = new Intent(OnbordStartActivity.this, WaitingPageActivity.class);
                     startActivity(i);
-                }
-                else if(profile!=null &&  profile.isLogedin()==Utils.user_loggedin_firsttime) {
-                   // OnbordingActivity.initLogin=false;//true - first time login //false - first time going to main page after response from server
+                } else if (profile != null && profile.isLogedin() == Utils.user_loggedin_firsttime) {
+                    // OnbordingActivity.initLogin=false;//true - first time login //false - first time going to main page after response from server
                     Intent intent = new Intent(getApplicationContext(), OnbordingActivity.class);
                     startActivity(intent);
 
-                }else{
+                } else {
                     Profile profiledata = new Profile();
                     profiledata.setLogedin(Utils.user_notloggedin);
-                    Utils.saveProfile(getApplicationContext(),profiledata);
+                    Utils.saveProfile(getApplicationContext(), profiledata);
                     Intent i = new Intent(OnbordStartActivity.this, SigninActivity.class);
                     startActivity(i);
                 }
@@ -65,7 +64,7 @@ public class OnbordStartActivity extends AppCompatActivity {
 
     }
 
-    public void postRequestUserAccess(){
+    public void postRequestUserAccess() {
         //ServerConnection.postRequestUserAccess(OnbordStartActivity.this,null);//working
         //ServerConnection.getDataFetchUserStatus(null,OnbordStartActivity.this,"12345678");//working
         //ServerConnection.getDataGetBoughtProducts(OnbordStartActivity.this,"12345678");//working

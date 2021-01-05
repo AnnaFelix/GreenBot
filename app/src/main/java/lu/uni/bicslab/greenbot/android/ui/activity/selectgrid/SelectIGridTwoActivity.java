@@ -46,7 +46,7 @@ public class SelectIGridTwoActivity extends AppCompatActivity {
         data = new ArrayList<SelectLocalImportModel>();
         for (int i = 0; i < SelectLocalImportModel.getTitle(getApplicationContext()).length; i++) {
             data.add(new SelectLocalImportModel(SelectLocalImportModel.getTitle2(getApplicationContext())[i],
-                    SelectLocalImportModel.getimage2(getApplicationContext())[i],false
+                    SelectLocalImportModel.getimage2(getApplicationContext())[i], false
 
             ));
         }
@@ -57,19 +57,20 @@ public class SelectIGridTwoActivity extends AppCompatActivity {
 
             }
         });
-        adapter = new CustomGridAdapter(getApplicationContext(),data);
+        adapter = new CustomGridAdapter(getApplicationContext(), data);
         recyclerView.setAdapter(adapter);
     }
-    void actionComlete(){
+
+    void actionComlete() {
         finish();
         Profile profile = Utils.readProfileData(getApplicationContext());
-        if(profile!=null && profile.isLogedin()==Utils.user_loggedin){
+        if (profile != null && profile.isLogedin() == Utils.user_loggedin) {
             Intent i = new Intent(SelectIGridTwoActivity.this, MainActivity.class);
             startActivity(i);
-        }else {
+        } else {
             Profile profileData = Utils.readProfileData(getApplicationContext());
             profileData.setLogedin(Utils.user_underconsideration);
-            Utils.saveProfile(getApplicationContext(),profileData);
+            Utils.saveProfile(getApplicationContext(), profileData);
             Intent i = new Intent(SelectIGridTwoActivity.this, WaitingPageActivity.class);
             startActivity(i);
         }

@@ -24,6 +24,7 @@ import lu.uni.bicslab.greenbot.android.other.Utils;
 
 public class IndicatorCategoryAdapter extends RecyclerView.Adapter<ItemHolder> implements Filterable {
 
+
     private List<IndicatorCategoryModel> modelList;
     private List<IndicatorCategoryModel> modelListFiltered;
     private Context context;

@@ -10,7 +10,7 @@ public class Profile implements Serializable {
     String serialscanner;
     int isLogedin;
 
-    public Profile(){
+    public Profile() {
 
     }
 

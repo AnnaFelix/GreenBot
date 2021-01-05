@@ -22,13 +22,14 @@ import lu.uni.bicslab.greenbot.android.other.Utils;
 public class WaitingPageActivity extends AppCompatActivity implements ServerConnection.ServerConnectionListner {
     ServerConnection.ServerConnectionListner mServerConnection;
     Button btn_start;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-       // requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // requestWindowFeature(Window.FEATURE_NO_TITLE);
         //getSupportActionBar().hide();
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-          //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_waitingpage_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -37,15 +38,13 @@ public class WaitingPageActivity extends AppCompatActivity implements ServerConn
         btn_start = findViewById(R.id.btn_start);
 
 
-
-
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ServerConnection.getDataFetchUserStatus(mServerConnection,getApplicationContext(),"");
+                ServerConnection.getDataFetchUserStatus(mServerConnection, getApplicationContext(), "");
                 Profile profileData = Utils.readProfileData(getApplicationContext());
                 profileData.setLogedin(Utils.user_loggedin_firsttime);
-                Utils.saveProfile(getApplicationContext(),profileData);
+                Utils.saveProfile(getApplicationContext(), profileData);
                 finish();
             }
         });

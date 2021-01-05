@@ -17,6 +17,7 @@ public class TermesAndConditionActivity extends AppCompatActivity implements Ser
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         getSupportActionBar().setTitle(getResources().getString(R.string.termes));
     }
 

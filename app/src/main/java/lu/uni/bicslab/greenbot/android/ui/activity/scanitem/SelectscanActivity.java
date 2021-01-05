@@ -66,6 +66,7 @@ public class SelectscanActivity extends AppCompatActivity implements BarcodeGrap
     // helper objects for detecting taps and pinches.
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
+
     /**
      * Initializes the UI and creates the detector pipeline.
      */
@@ -148,7 +149,7 @@ public class SelectscanActivity extends AppCompatActivity implements BarcodeGrap
      * Creates and starts the camera.  Note that this uses a higher resolution in comparison
      * to other detection examples to enable the barcode detector to detect small barcodes
      * at long distances.
-     *
+     * <p>
      * Suppressing InlinedApi since there is a check that the minimum version is met before using
      * the constant.
      */
@@ -234,10 +235,11 @@ public class SelectscanActivity extends AppCompatActivity implements BarcodeGrap
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        try{
-        if (mPreview != null) {
-            mPreview.release();
-        }}catch (Exception e){
+        try {
+            if (mPreview != null) {
+                mPreview.release();
+            }
+        } catch (Exception e) {
 
         }
     }
@@ -271,7 +273,7 @@ public class SelectscanActivity extends AppCompatActivity implements BarcodeGrap
         if (grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "Camera permission granted - initialize the camera source");
             // we have permission, so create the camerasource
-            boolean autoFocus = getIntent().getBooleanExtra(AutoFocus,true);
+            boolean autoFocus = getIntent().getBooleanExtra(AutoFocus, true);
             boolean useFlash = getIntent().getBooleanExtra(UseFlash, false);
             createCameraSource(autoFocus, useFlash);
             return;
@@ -428,11 +430,10 @@ public class SelectscanActivity extends AppCompatActivity implements BarcodeGrap
         //do something with barcode data returned
         Log.e(TAG, "Barcode read: got " + barcode.displayValue);
         Intent intent = getIntent();
-        intent.putExtra("barcode",barcode.displayValue);
+        intent.putExtra("barcode", barcode.displayValue);
         setResult(SigninActivity.RC_BARCODE_CAPTURE, intent);
         finish();
     }
-
 
 
 }

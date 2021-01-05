@@ -14,6 +14,7 @@ public class ProductModel implements Serializable {
     String image_url;
     List<IndicatorModel> indicators;
 
+
     public ProductModel(String code, String name, String description, String type, String category, String provider, String image_url, List<IndicatorModel> indicators) {
         this.code = code;
         this.name = name;

@@ -47,6 +47,7 @@ public class CompareActivity extends AppCompatActivity {
     private FragmentComareLayoutBinding binding;
     ProductModel modelmain;
     int currentPagemain;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,11 +58,10 @@ public class CompareActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-         modelmain = (ProductModel)getIntent().getSerializableExtra("key_product");
+        modelmain = (ProductModel) getIntent().getSerializableExtra("key_product");
 
 
         readData();
-
 
 
     }
@@ -80,19 +80,16 @@ public class CompareActivity extends AppCompatActivity {
                 // last page. make button text to GOT IT
                 binding.btnNext.setText("start");
                 binding.btnSkip.setVisibility(View.GONE);
-            } else if(position == (dots.length-1 )){
+            } else if (position == (dots.length - 1)) {
                 binding.btnNext.setText("Finish");
                 binding.btnSkip.setVisibility(View.VISIBLE);
-            }
-            else {
+            } else {
                 // still pages are left
                 binding.btnNext.setText("next");
                 binding.btnSkip.setVisibility(View.VISIBLE);
             }
         }
     };
-
-
 
 
     /*
@@ -121,6 +118,7 @@ public class CompareActivity extends AppCompatActivity {
         if (dots.length > 0)
             dots[currentPage].setTextColor(colorsActive[currentPage]);
     }
+
     private void addBottomDots(int currentPage) {
         dots = new TextView[layouts.size()];
         currentPagemain = currentPage;
@@ -142,11 +140,11 @@ public class CompareActivity extends AppCompatActivity {
 
         if (currentPage == 0) {
             dots[currentPage].setTextColor(colorsgreen[currentPage]);
-        }else if (currentPage == 1){
+        } else if (currentPage == 1) {
             dots[currentPage].setTextColor(colorsblue[currentPage]);
-        }else if (currentPage == 2){
+        } else if (currentPage == 2) {
             dots[currentPage].setTextColor(colorsyellow[currentPage]);
-        }else if (currentPage == 3){
+        } else if (currentPage == 3) {
             dots[currentPage].setTextColor(colorsorange[currentPage]);
         }
         binding.btnSkip.setOnClickListener(new View.OnClickListener() {
@@ -159,9 +157,9 @@ public class CompareActivity extends AppCompatActivity {
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int cout =0;
-                binding.viewPager.setCurrentItem(currentPagemain+1);
-                if(binding.btnNext.getText().equals("Finish")){
+                int cout = 0;
+                binding.viewPager.setCurrentItem(currentPagemain + 1);
+                if (binding.btnNext.getText().equals("Finish")) {
                     finish();
                 }
             }
@@ -169,17 +167,20 @@ public class CompareActivity extends AppCompatActivity {
 
     }
 
-    private void readDataOld(){
+    private void readDataOld() {
         String jsonFileString = lu.uni.bicslab.greenbot.android.other.Utils.getJsonFromAssets(getApplicationContext(), "products_to_review.json");
         Gson gson = new Gson();
-        Type listUserType = new TypeToken<List<ProductToReview>>() { }.getType();
+        Type listUserType = new TypeToken<List<ProductToReview>>() {
+        }.getType();
         List<ProductToReview> mProductToReview = gson.fromJson(jsonFileString, listUserType);
         String jsonFileStringProduct = lu.uni.bicslab.greenbot.android.other.Utils.getJsonFromAssets(getApplicationContext(), "products.json");
-        Type listUserTypeProduct = new TypeToken<List<ProductModel>>() { }.getType();
+        Type listUserTypeProduct = new TypeToken<List<ProductModel>>() {
+        }.getType();
         String jsonFileStringIndicator = Utils.getJsonFromAssets(getApplicationContext(), "indicators.json");
-        Type listUserTypeIndicator = new TypeToken<List<IndicatorModel>>() { }.getType();
+        Type listUserTypeIndicator = new TypeToken<List<IndicatorModel>>() {
+        }.getType();
 
-        List<ProductModel> productList = gson.fromJson(jsonFileStringProduct,listUserTypeProduct);
+        List<ProductModel> productList = gson.fromJson(jsonFileStringProduct, listUserTypeProduct);
         List<IndicatorModel> indicatorCategoryList = gson.fromJson(jsonFileStringIndicator, listUserTypeIndicator);
 
         List<IndicatorModel> indicatorlist = new ArrayList<IndicatorModel>();
@@ -190,20 +191,20 @@ public class CompareActivity extends AppCompatActivity {
         }
         mProductToReviewlist = new ArrayList<ProductModel>();
 
-        for(ProductToReview review : mProductToReview){
+        for (ProductToReview review : mProductToReview) {
             for (ProductModel model : productList) {
-                if(review.getProduct_ean().equals(model.getCode())){
+                if (review.getProduct_ean().equals(model.getCode())) {
                     mProductToReviewlist.add(model);
                     break;
                 }
             }
         }
-        int i=0;
+        int i = 0;
         for (ProductModel c : mProductToReviewlist) {
             List<IndicatorModel> mIndicatorModel = new ArrayList<IndicatorModel>();
-            for(IndicatorModel indicaor : c.getIndicators()) {
-                for(IndicatorModel indicaormain:indicatorCategoryList) {
-                    if(indicaor.getIndicator_idForProduct().equals(indicaormain.getId())){
+            for (IndicatorModel indicaor : c.getIndicators()) {
+                for (IndicatorModel indicaormain : indicatorCategoryList) {
+                    if (indicaor.getIndicator_idForProduct().equals(indicaormain.getId())) {
                         mIndicatorModel.add(indicaormain);
                     }
                 }
@@ -218,28 +219,29 @@ public class CompareActivity extends AppCompatActivity {
         Log.i("data", jsonFileString);
 
         Gson gsoncategory = new Gson();
-        Type listUserTypecategory = new TypeToken<List<IndicatorCategoryModel>>() { }.getType();
+        Type listUserTypecategory = new TypeToken<List<IndicatorCategoryModel>>() {
+        }.getType();
 
         List<IndicatorCategoryModel> mCategoryListmain = gsoncategory.fromJson(jsoncategory, listUserTypecategory);
 
 
-        setmAdapterViewpager(mCategoryListmain,null);
+        setmAdapterViewpager(mCategoryListmain, null);
 
     }
 
-    public void setmAdapterViewpager( List<IndicatorCategoryModel> mCategoryListmain, List<CompareModel> mCompareMdellist){
+    public void setmAdapterViewpager(List<IndicatorCategoryModel> mCategoryListmain, List<CompareModel> mCompareMdellist) {
         layouts = new ArrayList<Integer>();
         for (int i = 0; i < mCategoryListmain.size(); i++) {
             layouts.add(R.layout.comare_viewpager_row);
         }
-            mAdapter = new ViewSliderPagerAdapter(getApplicationContext(), layouts,mCategoryListmain, mCompareMdellist);
-            binding.viewPager.setAdapter(mAdapter);
-            addBottomDots(0);
-            binding.viewPager.registerOnPageChangeCallback(pageChangeCallback);
+        mAdapter = new ViewSliderPagerAdapter(getApplicationContext(), layouts, mCategoryListmain, mCompareMdellist);
+        binding.viewPager.setAdapter(mAdapter);
+        addBottomDots(0);
+        binding.viewPager.registerOnPageChangeCallback(pageChangeCallback);
 
     }
 
-    public void readData(){
+    public void readData() {
 
         List<IndicatorModel> indicatorCategoryList = Utils.getIndicatorsList(getApplicationContext());
 
@@ -248,9 +250,9 @@ public class CompareActivity extends AppCompatActivity {
         //get the items for compare
         List<CompareModel> compareViewModelList = new ArrayList<>();
 
-        for(ProductModel mProductModel : productModelList){
+        for (ProductModel mProductModel : productModelList) {
             //main products
-            if(modelmain.getType().equals(mProductModel.getType())){
+            if (modelmain.getType().equals(mProductModel.getType())) {
                 //add products
                 //................................................................
 
@@ -272,14 +274,14 @@ public class CompareActivity extends AppCompatActivity {
                     } else if (indicatorModelMain.getCategory_id().equals(Utils.ind_cat_social)) {
                         indicatorModelMain.setSelected(false);
                         //if (indicatorModelMain.getId().equals(indicator)) {
-                          //  indicatorModelMain.setSelected(true);
+                        //  indicatorModelMain.setSelected(true);
                         //}
                         indCatSociallist.add(indicatorModelMain);
-                    }else  if (indicatorModelMain.getCategory_id().equals(Utils.ind_cat_good_gevernance)) {
+                    } else if (indicatorModelMain.getCategory_id().equals(Utils.ind_cat_good_gevernance)) {
                         indicatorModelMain.setSelected(false);
 
                         indCatGoodGevernanceList.add(indicatorModelMain);
-                    } else if (indicatorModelMain.getCategory_id().equals(Utils.ind_cat_economic)){
+                    } else if (indicatorModelMain.getCategory_id().equals(Utils.ind_cat_economic)) {
                         indicatorModelMain.setSelected(false);
 
                         indCatEconomicList.add(indicatorModelMain);
@@ -288,17 +290,17 @@ public class CompareActivity extends AppCompatActivity {
                 }
                 //................................................................
                 CompareModel.CompareItemsModel comparemodel = new CompareModel.CompareItemsModel(indCatEnvironmentlist,
-                        indCatEconomicList,indCatSociallist, indCatGoodGevernanceList);
-                CompareModel mCompareViewModel = new CompareModel(mProductModel,comparemodel);
+                        indCatEconomicList, indCatSociallist, indCatGoodGevernanceList);
+                CompareModel mCompareViewModel = new CompareModel(mProductModel, comparemodel);
                 compareViewModelList.add(mCompareViewModel);
 
                 //main
                 for (int j = 0; j < mProductModel.getIndicators().size(); j++) {
                     String indicator = mProductModel.getIndicators().get(j).getIndicator_id();
-                    String category =  getCategoryIndicator(indicatorCategoryList,indicator);
+                    String category = getCategoryIndicator(indicatorCategoryList, indicator);
                     if (category.equals(Utils.ind_cat_environment)) {
-                        int n=0;
-                        for(IndicatorModel mm:comparemodel.getIndCatEnvironmentlist()){
+                        int n = 0;
+                        for (IndicatorModel mm : comparemodel.getIndCatEnvironmentlist()) {
                             if (mm.getId().equals(indicator)) {
                                 comparemodel.getIndCatEnvironmentlist().get(n).setSelected(true);
                             }
@@ -306,24 +308,24 @@ public class CompareActivity extends AppCompatActivity {
                         }
 
                     } else if (category.equals(Utils.ind_cat_social)) {
-                        int n=0;
-                        for(IndicatorModel mm:comparemodel.getIndCatSociallist()){
+                        int n = 0;
+                        for (IndicatorModel mm : comparemodel.getIndCatSociallist()) {
                             if (mm.getId().equals(indicator)) {
                                 comparemodel.getIndCatSociallist().get(n).setSelected(true);
                             }
                             n++;
                         }
-                    }else  if (category.equals(Utils.ind_cat_good_gevernance)) {
-                        int n=0;
-                        for(IndicatorModel mm:comparemodel.getIndCatGoodGevernanceList()){
+                    } else if (category.equals(Utils.ind_cat_good_gevernance)) {
+                        int n = 0;
+                        for (IndicatorModel mm : comparemodel.getIndCatGoodGevernanceList()) {
                             if (mm.getId().equals(indicator)) {
                                 comparemodel.getIndCatGoodGevernanceList().get(n).setSelected(true);
                             }
                             n++;
                         }
-                    } else if (category.equals(Utils.ind_cat_economic)){
-                        int n=0;
-                        for(IndicatorModel mm:comparemodel.getIndCatEconomicList()){
+                    } else if (category.equals(Utils.ind_cat_economic)) {
+                        int n = 0;
+                        for (IndicatorModel mm : comparemodel.getIndCatEconomicList()) {
                             if (mm.getId().equals(indicator)) {
                                 comparemodel.getIndCatEconomicList().get(n).setSelected(true);
                             }
@@ -341,9 +343,10 @@ public class CompareActivity extends AppCompatActivity {
         List<IndicatorCategoryModel> mCategoryListmain = Utils.getIndicatorCategoryList(getApplicationContext());
 
 
-        setmAdapterViewpager(mCategoryListmain,compareViewModelList);
+        setmAdapterViewpager(mCategoryListmain, compareViewModelList);
 
     }
+
     public String getCategoryIndicator(List<IndicatorModel> model, String id) {
         String category = Utils.ind_cat_environment;
         for (int j = 0; j < model.size(); j++) {

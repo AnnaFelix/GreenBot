@@ -44,23 +44,25 @@ public class SelectLocalImportModel {
         this.selected = selected;
     }
 
-    public  static  String[] getTitle(Context mcontext){
+    public static String[] getTitle(Context mcontext) {
         String[] title_Array = new String[]{mcontext.getResources().getString(R.string.conimporte), mcontext.getResources().getString(R.string.conlocal), mcontext.getResources().getString(R.string.bioimporte), mcontext.getResources().getString(R.string.biolocal)};
         return title_Array;
     }
-    public  static  Drawable[] getimage(Context mcontext){
-       Drawable[] title_Array = new Drawable[]{ContextCompat.getDrawable(mcontext, R.drawable.conimport),
-               ContextCompat.getDrawable(mcontext, R.drawable.conloasl), ContextCompat.getDrawable(mcontext, R.drawable.bioimport), ContextCompat.getDrawable(mcontext, R.drawable.bioimport)};
+
+    public static Drawable[] getimage(Context mcontext) {
+        Drawable[] title_Array = new Drawable[]{ContextCompat.getDrawable(mcontext, R.drawable.conimport),
+                ContextCompat.getDrawable(mcontext, R.drawable.conloasl), ContextCompat.getDrawable(mcontext, R.drawable.bioimport), ContextCompat.getDrawable(mcontext, R.drawable.bioimport)};
         return title_Array;
     }
 
-    public  static  String[] getTitle2(Context mcontext){
+    public static String[] getTitle2(Context mcontext) {
         String[] title_Array = new String[]{mcontext.getResources().getString(R.string.Soutenir),
                 mcontext.getResources().getString(R.string.Connaitre), mcontext.getResources().getString(R.string.Encourager),
                 mcontext.getResources().getString(R.string.privilege)};
         return title_Array;
     }
-    public  static  Drawable[] getimage2(Context mcontext){
+
+    public static Drawable[] getimage2(Context mcontext) {
         Drawable[] title_Array = new Drawable[]{ContextCompat.getDrawable(mcontext, R.drawable.socio_economique_icon),
                 ContextCompat.getDrawable(mcontext, R.drawable.socio_ecologique_icon),
                 ContextCompat.getDrawable(mcontext, R.drawable.socio_culturel_icon), ContextCompat.getDrawable(mcontext, R.drawable.socio_politique_icon)};

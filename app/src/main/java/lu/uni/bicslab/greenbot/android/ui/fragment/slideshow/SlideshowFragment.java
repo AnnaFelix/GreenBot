@@ -30,6 +30,7 @@ public class SlideshowFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
         return root;
     }
 }

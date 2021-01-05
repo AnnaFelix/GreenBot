@@ -22,7 +22,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     private List<IndicatorModel> indicatorModel;
     private Context context;
 
-    public CustomAdapter(Context context, List<IndicatorModel>  indicatorModel) {
+    public CustomAdapter(Context context, List<IndicatorModel> indicatorModel) {
         this.context = context;
         this.indicatorModel = indicatorModel;
 
@@ -42,7 +42,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         //holder.mName.setText(model.getName());
         holder.mDescription.setText(model.getGeneral_description());
 
-        Glide.with(context).load(Utils.GetImage(context,model.getIcon_name())).apply(RequestOptions.centerCropTransform()).into(holder.txt_firstletter);
+        Glide.with(context).load(Utils.GetImage(context, model.getIcon_name())).apply(RequestOptions.centerCropTransform()).into(holder.txt_firstletter);
 
     }
 

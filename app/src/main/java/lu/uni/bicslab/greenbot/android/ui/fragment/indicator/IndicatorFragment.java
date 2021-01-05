@@ -25,17 +25,16 @@ import java.util.List;
 import lu.uni.bicslab.greenbot.android.R;
 import lu.uni.bicslab.greenbot.android.other.Utils;
 
-public class IndicatorFragment  extends Fragment
-
-{
+public class IndicatorFragment extends Fragment {
     private RecyclerView recyclerView;
 
     private IndicatorAdapter itemAdapter;
-    private  String indicatorID;
+    private String indicatorID;
     SearchManager searchManager;
     SearchView searchView;
     TextView textviewloading;
     List<ProductModel> list;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -47,15 +46,15 @@ public class IndicatorFragment  extends Fragment
         searchView.setMaxWidth(Integer.MAX_VALUE);
         try {
             indicatorID = getActivity().getIntent().getExtras().getString("value");
-        }catch (Exception e){
+        } catch (Exception e) {
             indicatorID = Utils.id;
         }
         list = new ArrayList<ProductModel>();
         itemAdapter = new IndicatorAdapter();
-        list =  fillDummyData();
+        list = fillDummyData();
 
 
-        itemAdapter.setMovieList(getActivity(),list);
+        itemAdapter.setMovieList(getActivity(), list);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -80,6 +79,7 @@ public class IndicatorFragment  extends Fragment
 
         return root;
     }
+
     private List<ProductModel> fillDummyData() {
         textviewloading.setText(R.string.loading);
 
@@ -87,11 +87,13 @@ public class IndicatorFragment  extends Fragment
         String jsonFileStringProduct = Utils.getJsonFromAssets(getActivity(), "products.json");
 
         Gson gson = new Gson();
-        Type listUserTypeIndicator = new TypeToken<List<IndicatorModel>>() { }.getType();
-        Type listUserTypeProduct = new TypeToken<List<ProductModel>>() { }.getType();
+        Type listUserTypeIndicator = new TypeToken<List<IndicatorModel>>() {
+        }.getType();
+        Type listUserTypeProduct = new TypeToken<List<ProductModel>>() {
+        }.getType();
 
         List<IndicatorModel> indicatorCategoryList = gson.fromJson(jsonFileStringIndicator, listUserTypeIndicator);
-        List<ProductModel> productList = gson.fromJson(jsonFileStringProduct,listUserTypeProduct);
+        List<ProductModel> productList = gson.fromJson(jsonFileStringProduct, listUserTypeProduct);
 
         List<IndicatorModel> indicatorlist = new ArrayList<IndicatorModel>();
         for (IndicatorModel c : indicatorCategoryList) {
@@ -103,31 +105,31 @@ public class IndicatorFragment  extends Fragment
         List<ProductModel> productfinallist = new ArrayList<ProductModel>();
         for (ProductModel c : productList) {
             boolean added = false;
-            Log.e("product",""+c.getIndicators());
-            for(IndicatorModel indicaor : c.getIndicators()) {
-                for(IndicatorModel indicaormain:indicatorCategoryList) {
+            Log.e("product", "" + c.getIndicators());
+            for (IndicatorModel indicaor : c.getIndicators()) {
+                for (IndicatorModel indicaormain : indicatorCategoryList) {
                     Log.e("indicaor", "" + indicaor.getCategory_id());
                     if ((indicaor.getIndicator_idForProduct().equals(indicaormain.getId())) &&
-                            (indicaormain.getCategory_id().equals(indicatorID))){
+                            (indicaormain.getCategory_id().equals(indicatorID))) {
                         productfinallist.add(c);
-                        added= true;
+                        added = true;
                         break;
                     }
-                    if(added)break;
+                    if (added) break;
                 }
-                if(added)break;
+                if (added) break;
             }
         }
-        if(productfinallist.size()>0){
+        if (productfinallist.size() > 0) {
             textviewloading.setVisibility(View.GONE);
             searchView.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             textviewloading.setVisibility(View.VISIBLE);
             textviewloading.setText(R.string.nodata);
             searchView.setVisibility(View.GONE);
         }
 
-        Log.e("productfinallist",""+productfinallist);
+        Log.e("productfinallist", "" + productfinallist);
         return productfinallist;
 
     }

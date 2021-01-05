@@ -9,6 +9,7 @@ public class ProductToReview {
         this.product_ean = product_ean;
     }
 
+
     public String getTimestamp() {
         return timestamp;
     }

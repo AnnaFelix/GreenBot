@@ -45,6 +45,7 @@ public class FeedbackMainActivity extends AppCompatActivity implements UpdateAct
     List<ProductModel> mProductToReviewlist;
 
     UpdateActionCompleteListener mUpdateActionCompleteListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,16 +65,17 @@ public class FeedbackMainActivity extends AppCompatActivity implements UpdateAct
 
         setmAdapterViewpager();
     }
-    public void setmAdapterViewpager(){
-        if(mProductToReviewlist.size() == 0){
+
+    public void setmAdapterViewpager() {
+        if (mProductToReviewlist.size() == 0) {
             finish();
-        }else {
+        } else {
             layouts = new ArrayList<Integer>();
             for (int i = 0; i < mProductToReviewlist.size(); i++) {
                 layouts.add(R.layout.feedback_row_layout);
             }
 
-            mAdapter = new FeedbackMainActivity.ViewsSliderAdapter(FeedbackMainActivity.this,mProductToReviewlist, mUpdateActionCompleteListener);
+            mAdapter = new FeedbackMainActivity.ViewsSliderAdapter(FeedbackMainActivity.this, mProductToReviewlist, mUpdateActionCompleteListener);
             binding.viewPager.setAdapter(mAdapter);
             binding.viewPager.registerOnPageChangeCallback(pageChangeCallback);
 
@@ -96,6 +98,7 @@ public class FeedbackMainActivity extends AppCompatActivity implements UpdateAct
         Intent i = new Intent(this, SigninActivity.class);
         startActivity(i);
     }
+
     /*
      * ViewPager page change listener
      */
@@ -146,22 +149,23 @@ public class FeedbackMainActivity extends AppCompatActivity implements UpdateAct
     }
 
 
-    public static class ViewsSliderAdapter extends RecyclerView.Adapter<FeedbackMainActivity.ViewsSliderAdapter.SliderViewHolder> implements UpdateFeedbackListener{
+    public static class ViewsSliderAdapter extends RecyclerView.Adapter<FeedbackMainActivity.ViewsSliderAdapter.SliderViewHolder> implements UpdateFeedbackListener {
         Context mcontext;
         UpdateActionCompleteListener mUpdateActionCompleteListener;
         List<ProductModel> mProductToReviewlist;
         CustomindicatorAdapter adapter;
         UpdateFeedbackListener mUpdateFeedbackListener;
         int currentViewpagerPos;
+
         public ViewsSliderAdapter(Context mcontext, List<ProductModel> mProductToReviewlist, UpdateActionCompleteListener mUpdateActionCompleteListener) {
-            this. mcontext = mcontext;
-            this. mUpdateActionCompleteListener = mUpdateActionCompleteListener;
-            this. mProductToReviewlist = mProductToReviewlist;
+            this.mcontext = mcontext;
+            this.mUpdateActionCompleteListener = mUpdateActionCompleteListener;
+            this.mProductToReviewlist = mProductToReviewlist;
             mUpdateFeedbackListener = this;
         }
 
         @Override
-        public void updateFeedbackAction(boolean isUpdated, List<IndicatorModel>  mIndicatorModel, int pos, int itemposchnged) {
+        public void updateFeedbackAction(boolean isUpdated, List<IndicatorModel> mIndicatorModel, int pos, int itemposchnged) {
             mProductToReviewlist.get(pos);
             mProductToReviewlist.get(pos).setIndicators(mIndicatorModel);
             adapter.notifyDataSetChanged();
@@ -175,7 +179,7 @@ public class FeedbackMainActivity extends AppCompatActivity implements UpdateAct
             return new FeedbackMainActivity.ViewsSliderAdapter.SliderViewHolder(view);
         }
 
-        public void onBindViewHolder(@NonNull FeedbackMainActivity.ViewsSliderAdapter.SliderViewHolder holder,  int position) {
+        public void onBindViewHolder(@NonNull FeedbackMainActivity.ViewsSliderAdapter.SliderViewHolder holder, int position) {
             currentViewpagerPos = position;
             ProductModel model = mProductToReviewlist.get(position);
             //holder.slide_one_title.setText(model.getCategory());
@@ -189,39 +193,41 @@ public class FeedbackMainActivity extends AppCompatActivity implements UpdateAct
             holder.my_recycler_view.setLayoutManager(gridLayoutManager);
             holder.my_recycler_view.setItemAnimator(new DefaultItemAnimator());
             List<IndicatorModel> indicatorslist = model.getIndicators();
-                // List<IndicatorModel> indi =  mProductToReviewlist.get(currentViewpagerPos).getIndicators();
-                    IndicatorModel modeltoadd = new IndicatorModel("indicator_price", "Price", "Price",
-                            "indicator_price", "category_id", "id",
-                            "general_description", 0, false);
-                    mProductToReviewlist.get(currentViewpagerPos).getIndicators().add(modeltoadd);
-                    IndicatorModel modeltoaddedittext = new IndicatorModel("indicator_review", "Review", "Review",
+            // List<IndicatorModel> indi =  mProductToReviewlist.get(currentViewpagerPos).getIndicators();
+            IndicatorModel modeltoadd = new IndicatorModel("indicator_price", "Price", "Price",
+                    "indicator_price", "category_id", "id",
+                    "general_description", 0, false);
+            mProductToReviewlist.get(currentViewpagerPos).getIndicators().add(modeltoadd);
+            IndicatorModel modeltoaddedittext = new IndicatorModel("indicator_review", "Review", "Review",
                     "indicator_Review", "category_id", "id",
                     "general_description", 0, false);
-                    mProductToReviewlist.get(currentViewpagerPos).getIndicators().add(modeltoaddedittext);
+            mProductToReviewlist.get(currentViewpagerPos).getIndicators().add(modeltoaddedittext);
 
 
             //UpdateFeedbackListener mUpdateFeedbackListener;
-            adapter = new CustomindicatorAdapter(mcontext,mProductToReviewlist, currentViewpagerPos,mUpdateFeedbackListener);
+            adapter = new CustomindicatorAdapter(mcontext, mProductToReviewlist, currentViewpagerPos, mUpdateFeedbackListener);
             holder.my_recycler_view.setAdapter(adapter);
             holder.btn_start.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mProductToReviewlist.remove(currentViewpagerPos);
-                    if(mProductToReviewlist.size()>0){
-                        for(ProductModel model :mProductToReviewlist){
-                           for(IndicatorModel indicator: model.getIndicators()){
-                               indicator.setSelectionnumber(0);
-                           }
+                    if (mProductToReviewlist.size() > 0) {
+                        for (ProductModel model : mProductToReviewlist) {
+                            for (IndicatorModel indicator : model.getIndicators()) {
+                                indicator.setSelectionnumber(0);
+                            }
                         }
                     }
                     mUpdateActionCompleteListener.updateAction(true);
                 }
             });
         }
+
         @Override
         public int getItemViewType(int position) {
             return layouts.get(position);
         }
+
         @Override
         public int getItemCount() {
             return layouts.size();
@@ -232,6 +238,7 @@ public class FeedbackMainActivity extends AppCompatActivity implements UpdateAct
             ImageView img_icon;
             RecyclerView my_recycler_view;
             Button btn_start;
+
             public SliderViewHolder(View view) {
                 super(view);
 
@@ -244,17 +251,21 @@ public class FeedbackMainActivity extends AppCompatActivity implements UpdateAct
             }
         }
     }
-    private void readData(){
+
+    private void readData() {
         String jsonFileString = lu.uni.bicslab.greenbot.android.other.Utils.getJsonFromAssets(getApplicationContext(), "products_to_review.json");
         Gson gson = new Gson();
-        Type listUserType = new TypeToken<List<ProductToReview>>() { }.getType();
+        Type listUserType = new TypeToken<List<ProductToReview>>() {
+        }.getType();
         List<ProductToReview> mProductToReview = gson.fromJson(jsonFileString, listUserType);
         String jsonFileStringProduct = lu.uni.bicslab.greenbot.android.other.Utils.getJsonFromAssets(getApplicationContext(), "products.json");
-        Type listUserTypeProduct = new TypeToken<List<ProductModel>>() { }.getType();
+        Type listUserTypeProduct = new TypeToken<List<ProductModel>>() {
+        }.getType();
         String jsonFileStringIndicator = Utils.getJsonFromAssets(getApplicationContext(), "indicators.json");
-        Type listUserTypeIndicator = new TypeToken<List<IndicatorModel>>() { }.getType();
+        Type listUserTypeIndicator = new TypeToken<List<IndicatorModel>>() {
+        }.getType();
 
-        List<ProductModel> productList = gson.fromJson(jsonFileStringProduct,listUserTypeProduct);
+        List<ProductModel> productList = gson.fromJson(jsonFileStringProduct, listUserTypeProduct);
         List<IndicatorModel> indicatorCategoryList = gson.fromJson(jsonFileStringIndicator, listUserTypeIndicator);
 
         List<IndicatorModel> indicatorlist = new ArrayList<IndicatorModel>();
@@ -265,20 +276,20 @@ public class FeedbackMainActivity extends AppCompatActivity implements UpdateAct
         }
         mProductToReviewlist = new ArrayList<ProductModel>();
 
-        for(ProductToReview review : mProductToReview){
+        for (ProductToReview review : mProductToReview) {
             for (ProductModel model : productList) {
-                if(review.getProduct_ean().equals(model.getCode())){
+                if (review.getProduct_ean().equals(model.getCode())) {
                     mProductToReviewlist.add(model);
                     break;
                 }
             }
         }
-        int i=0;
+        int i = 0;
         for (ProductModel c : mProductToReviewlist) {
             List<IndicatorModel> mIndicatorModel = new ArrayList<IndicatorModel>();
-            for(IndicatorModel indicaor : c.getIndicators()) {
-                for(IndicatorModel indicaormain:indicatorCategoryList) {
-                    if(indicaor.getIndicator_idForProduct().equals(indicaormain.getId())){
+            for (IndicatorModel indicaor : c.getIndicators()) {
+                for (IndicatorModel indicaormain : indicatorCategoryList) {
+                    if (indicaor.getIndicator_idForProduct().equals(indicaormain.getId())) {
                         mIndicatorModel.add(indicaormain);
                     }
                 }

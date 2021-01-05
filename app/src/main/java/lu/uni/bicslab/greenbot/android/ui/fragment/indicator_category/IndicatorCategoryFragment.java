@@ -97,6 +97,7 @@ public class IndicatorCategoryFragment extends Fragment
             //    Log.i("data", "> Item " + i + "\n" + users.get(i));
             //}
 
+
             if(indicatorCategoryList.size()>0){
                 textviewloading.setVisibility(View.GONE);
                 searchView.setVisibility(View.VISIBLE);

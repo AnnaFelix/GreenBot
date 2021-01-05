@@ -49,6 +49,7 @@ public class ProfileFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
+
         layout_retourclient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

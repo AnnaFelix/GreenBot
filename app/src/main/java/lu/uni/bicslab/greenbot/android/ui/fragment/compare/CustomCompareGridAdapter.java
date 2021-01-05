@@ -28,6 +28,7 @@ public class CustomCompareGridAdapter extends RecyclerView.Adapter<CustomCompare
     private Context mcontext;
     int positionViewpager;
     private List<IndicatorModel> modelIndicatorModel;
+
     public static class CustomViewHolder extends RecyclerView.ViewHolder {
 
         TextView txt_categoryname;
@@ -46,16 +47,16 @@ public class CustomCompareGridAdapter extends RecyclerView.Adapter<CustomCompare
         this.compareModel = mCategoryList;
         this.mcontext = mcontext;
         this.positionViewpager = positionViewpager;
-        if(positionViewpager == 0){
+        if (positionViewpager == 0) {
             modelIndicatorModel = compareModel.get(0).getmCompareItemsModel().getIndCatEnvironmentlist();
 
-        }else if(positionViewpager == 1){
+        } else if (positionViewpager == 1) {
             modelIndicatorModel = compareModel.get(0).getmCompareItemsModel().getIndCatEconomicList();
 
-        }else if(positionViewpager == 2){
-            modelIndicatorModel =  compareModel.get(0).getmCompareItemsModel().getIndCatSociallist();
+        } else if (positionViewpager == 2) {
+            modelIndicatorModel = compareModel.get(0).getmCompareItemsModel().getIndCatSociallist();
 
-        }else{
+        } else {
             modelIndicatorModel = compareModel.get(0).getmCompareItemsModel().getIndCatGoodGevernanceList();
 
         }
@@ -72,20 +73,21 @@ public class CustomCompareGridAdapter extends RecyclerView.Adapter<CustomCompare
     }
 
     @Override
-    public void onBindViewHolder(CustomCompareGridAdapter.CustomViewHolder  holder, int position) {
-       // ProductModel dataModel = productModel.get(position);
+    public void onBindViewHolder(CustomCompareGridAdapter.CustomViewHolder holder, int position) {
+        // ProductModel dataModel = productModel.get(position);
         ImageView imageview_icon = holder.img_product_icon;
         RecyclerView recycler_viewindicator = holder.recycler_viewindicator;
-        Log.e("eee position",""+positionViewpager);
+        Log.e("eee position", "" + positionViewpager);
         //imageview_icon.setBackground(dataModel.get(position).getImage());
         Glide.with(mcontext).load(compareModel.get(position).getProductModelForcompare().getImage_url()).
                 apply(RequestOptions.centerCropTransform()).into(imageview_icon);
 
-        CustomCompareListRowAdapter adapter = new CustomCompareListRowAdapter(mcontext,positionViewpager, modelIndicatorModel);
+        CustomCompareListRowAdapter adapter = new CustomCompareListRowAdapter(mcontext, positionViewpager, modelIndicatorModel);
         recycler_viewindicator.setAdapter(adapter);
         recycler_viewindicator.setLayoutManager(new LinearLayoutManager(mcontext));
 
     }
+
     @Override
     public int getItemCount() {
         return compareModel.size();

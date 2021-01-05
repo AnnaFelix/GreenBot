@@ -14,6 +14,7 @@ public class IndicatorModel implements Serializable {
     String id;
     String general_description;
     int selectionnumber = 0;
+
     boolean isSelected = false;
 
     public IndicatorModel(String indicator_id, String name, String icon_name, String indicator_description, String category_id, String id, String general_description, int selectionnumber, boolean isSelected) {

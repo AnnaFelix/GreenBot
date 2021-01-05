@@ -32,8 +32,8 @@ public class CompareModel {
         this.mCompareItemsModel = mCompareItemsModel;
     }
 
-    public static class CompareItemsModel{
-        List<IndicatorModel> indCatEnvironmentlist ;
+    public static class CompareItemsModel {
+        List<IndicatorModel> indCatEnvironmentlist;
         List<IndicatorModel> indCatSociallist;
         List<IndicatorModel> indCatGoodGevernanceList;
         List<IndicatorModel> indCatEconomicList;

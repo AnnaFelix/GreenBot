@@ -28,10 +28,10 @@ public class CustomCompareListRowAdapter extends RecyclerView.Adapter<CustomComp
     private List<IndicatorModel> indicatorModel;
     private Context context;
 
-    public CustomCompareListRowAdapter(Context context, int positionViewpager, List<IndicatorModel>  indicatorModel) {
+    public CustomCompareListRowAdapter(Context context, int positionViewpager, List<IndicatorModel> indicatorModel) {
         this.context = context;
         this.indicatorModel = indicatorModel;
-        Log.e("sizzee",""+indicatorModel.size());
+        Log.e("sizzee", "" + indicatorModel.size());
 
     }
 
@@ -45,21 +45,21 @@ public class CustomCompareListRowAdapter extends RecyclerView.Adapter<CustomComp
     @Override
     public void onBindViewHolder(CustomCompareListRowAdapter.CompareCustomView holder, int position) {
         IndicatorModel model = indicatorModel.get(position);
-        Log.e("model",""+model.getName());
+        Log.e("model", "" + model.getName());
 
         holder.mName.setText(model.getName());
         holder.layout_main_compare.setVisibility(View.INVISIBLE);
 
-        Glide.with(context).load(Utils.GetImage(context,model.getIcon_name())).apply(RequestOptions.centerCropTransform()).into(holder.txt_firstletter);
-        if(model.isSelected() == false){
+        Glide.with(context).load(Utils.GetImage(context, model.getIcon_name())).apply(RequestOptions.centerCropTransform()).into(holder.txt_firstletter);
+        if (model.isSelected() == false) {
             holder.mName.setTextColor(Color.GRAY);
             // Apply grayscale filter
             ColorMatrix matrix = new ColorMatrix();
             matrix.setSaturation(0);
             ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
             holder.txt_firstletter.setColorFilter(filter);
-        }else{
-           // holder.layout_main_compare.setVisibility(View.GONE);
+        } else {
+            // holder.layout_main_compare.setVisibility(View.GONE);
             holder.mName.setTextColor(Color.BLACK);
 
         }
@@ -67,7 +67,7 @@ public class CustomCompareListRowAdapter extends RecyclerView.Adapter<CustomComp
 
     @Override
     public int getItemCount() {
-        Log.e("model",""+indicatorModel.size());
+        Log.e("model", "" + indicatorModel.size());
         return indicatorModel == null ? 0 : indicatorModel.size();
     }
 
@@ -80,7 +80,7 @@ public class CustomCompareListRowAdapter extends RecyclerView.Adapter<CustomComp
         public CompareCustomView(View itemView) {
             super(itemView);
 
-            Log.e("model","inside");
+            Log.e("model", "inside");
             mName = itemView.findViewById(R.id.txt_name);
             txt_firstletter = itemView.findViewById(R.id.txt_firstletter);
             layout_main_compare = itemView.findViewById(R.id.layout_main_compare);
