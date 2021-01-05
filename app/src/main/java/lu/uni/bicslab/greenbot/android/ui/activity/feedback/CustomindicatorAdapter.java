@@ -54,6 +54,7 @@ public class CustomindicatorAdapter extends RecyclerView.Adapter<Customindicator
          this. data = mProductToReviewlist.get(currentViewpagerPos).getIndicators().get(positionval);
         holder.txt_pos.setVisibility(View.GONE);
         int clickPos = data.getSelectionnumber();
+        //price review
         if(data.getName().equals("Price")){
             holder.txt_title.setVisibility(View.VISIBLE);
             holder.imageView_icon.setVisibility(View.GONE);
