@@ -8,9 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import lu.uni.bicslab.greenbot.android.R;
-import lu.uni.bicslab.greenbot.android.other.Profile;
 import lu.uni.bicslab.greenbot.android.other.ServerConnection;
-import lu.uni.bicslab.greenbot.android.other.Utils;
 
 public class ProductConsultActivity extends AppCompatActivity implements ServerConnection.ServerConnectionListner {
 

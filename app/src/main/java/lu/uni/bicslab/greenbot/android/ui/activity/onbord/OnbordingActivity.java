@@ -21,7 +21,10 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.util.Util;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -47,6 +50,7 @@ public class OnbordingActivity extends AppCompatActivity {
     private int[] layouts;
     private OnbordingMainLayoutBinding binding;
     Profile profile = null;
+    JSONObject jsonObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,12 @@ public class OnbordingActivity extends AppCompatActivity {
         }else{
             initLogin = false;
         }*/
+        String data = getIntent().getStringExtra("data");
+        try {
+            jsonObject = new JSONObject(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         setContentView(binding.getRoot());
         init();
@@ -135,6 +145,7 @@ public class OnbordingActivity extends AppCompatActivity {
     private void launchHomeScreen(int count) {
         if (profile.isLogedin() == lu.uni.bicslab.greenbot.android.other.Utils.user_notloggedin) {
             Intent i = new Intent(this, SelectGridOneActivity.class);
+            i.putExtra("data",jsonObject.toString());//
             startActivity(i);
             finish();
         } else if (profile.isLogedin() == lu.uni.bicslab.greenbot.android.other.Utils.user_loggedin_firsttime) {

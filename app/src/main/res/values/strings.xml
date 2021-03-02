@@ -108,7 +108,16 @@ pour chaque produit.</string>
         juste prix.</string>
 <string name="review">Review</string>
 <string name="Price">Price</string>
-<string name="accountconsideration">Your account is under consideration</string>
-
+    <string name="accountconsideration">Your account is under consideration</string>
+    <string name="local_organic">local_organic</string>
+    <string name="local_conventional">local_conventional</string>
+    <string name="imported_organic">imported_organic</string>
+    <string name="imported_conventional">imported_conventional</string>
+    <string name="ind_cat_environment">ind_cat_environment</string>
+    <string name="ind_cat_social">ind_cat_social</string>
+    <string name="ind_cat_governance">ind_cat_governance</string>
+    <string name="ind_cat_economic">ind_cat_economic</string>
+    <string name="requested">requested</string>
+    <string name="valid">ind_cat_economic</string>
 </resources>
 

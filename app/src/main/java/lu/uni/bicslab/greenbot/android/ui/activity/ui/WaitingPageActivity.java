@@ -41,11 +41,9 @@ public class WaitingPageActivity extends AppCompatActivity implements ServerConn
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ServerConnection.getDataFetchUserStatus(mServerConnection, getApplicationContext(), "");
                 Profile profileData = Utils.readProfileData(getApplicationContext());
-                profileData.setLogedin(Utils.user_loggedin_firsttime);
-                Utils.saveProfile(getApplicationContext(), profileData);
-                finish();
+                ServerConnection.getDataFetchUserStatus(mServerConnection, getApplicationContext(), profileData.getSerialscanner());
+
             }
         });
 
@@ -61,6 +59,14 @@ public class WaitingPageActivity extends AppCompatActivity implements ServerConn
 
     @Override
     public void onServerConnectionActionComplete(String value) {
+       //requested status to valid - 1st time so set user_loggedin_firsttime
+        if(value.equalsIgnoreCase(getResources().getString(R.string.valid))) {
 
+            Profile profileData = Utils.readProfileData(getApplicationContext());
+            profileData.setLogedin(Utils.user_loggedin_firsttime);
+            Utils.saveProfile(getApplicationContext(), profileData);
+            finish();
+
+        }
     }
 }

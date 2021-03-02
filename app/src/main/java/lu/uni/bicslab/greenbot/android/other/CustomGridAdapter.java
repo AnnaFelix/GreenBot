@@ -15,12 +15,13 @@ import java.util.ArrayList;
 
 import lu.uni.bicslab.greenbot.android.R;
 import lu.uni.bicslab.greenbot.android.ui.activity.selectgrid.SelectLocalImportModel;
+import lu.uni.bicslab.greenbot.android.ui.activity.selectgrid.SelectionActionCompleteListner;
 
 public class CustomGridAdapter extends RecyclerView.Adapter<CustomGridAdapter.MyViewHolder> {
 
     private ArrayList<SelectLocalImportModel> dataModel;
     private Context mContext;
-
+    SelectionActionCompleteListner mSelectionActionCompleteListner;
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView text_title;
@@ -40,9 +41,10 @@ public class CustomGridAdapter extends RecyclerView.Adapter<CustomGridAdapter.My
         }
     }
 
-    public CustomGridAdapter(Context mContext, ArrayList<SelectLocalImportModel> data) {
+    public CustomGridAdapter(Context mContext, ArrayList<SelectLocalImportModel> data, SelectionActionCompleteListner mSelectionActionCompleteListner) {
         this.dataModel = data;
         this.mContext = mContext;
+        this.mSelectionActionCompleteListner = mSelectionActionCompleteListner;
     }
 
     @Override
@@ -91,6 +93,7 @@ public class CustomGridAdapter extends RecyclerView.Adapter<CustomGridAdapter.My
             @Override
             public void onClick(View view) {
                 dataModel.get(position).setSelected(!dataModel.get(position).isSelected());
+                mSelectionActionCompleteListner.onSeclectionCompleted(position);
                 notifyDataSetChanged();
             }
         });

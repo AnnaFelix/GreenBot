@@ -32,7 +32,7 @@ public class Utils {
     public static final String name = "name";
     public static final String shrprofilename = "profile";
 
-    public static final int user_underconsideration = 1;
+    public static final int user_requested = 1;
     public static final int user_notloggedin = 0;
     public static final int user_loggedin = 2;
     public static final int user_loggedin_firsttime = 3;

@@ -11,6 +11,11 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import lu.uni.bicslab.greenbot.android.MainActivity;
 import lu.uni.bicslab.greenbot.android.R;
 import lu.uni.bicslab.greenbot.android.other.Profile;
@@ -18,13 +23,13 @@ import lu.uni.bicslab.greenbot.android.other.ServerConnection;
 import lu.uni.bicslab.greenbot.android.other.Utils;
 import lu.uni.bicslab.greenbot.android.ui.activity.onbord.OnbordingActivity;
 
-public class SigninActivity extends AppCompatActivity implements ServerConnection.ServerConnectionListner {
+public class SigninActivity extends AppCompatActivity  {
 
    Button login;
    public static final int RC_BARCODE_CAPTURE = 9001;
    EditText signin_id;
    String id;
-    ServerConnection.ServerConnectionListner mServerConnectionListner;
+   JsonObject jsonObject;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -35,8 +40,8 @@ public class SigninActivity extends AppCompatActivity implements ServerConnectio
         setContentView(R.layout.activity_siginin);
         login = (Button) findViewById(R.id.tx_login);
         signin_id = (EditText) findViewById(R.id.signin_id);
+        jsonObject = new JsonObject();
 
-        mServerConnectionListner = this;
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +63,7 @@ public class SigninActivity extends AppCompatActivity implements ServerConnectio
                     Utils.saveProfile(getApplicationContext(),profile);
                     Intent intent = new Intent(SigninActivity.this, OnbordingActivity.class);
                     intent.putExtra("logintype",false);//
+                    intent.putExtra("data",onJsonObjectSet(signin_id.getText().toString()).toString());//
                    // startActivityForResult(intent, RC_BARCODE_CAPTURE);
                     startActivity(intent);
                 }
@@ -75,7 +81,8 @@ public class SigninActivity extends AppCompatActivity implements ServerConnectio
                 if (data != null) {
                     String requiredValue = data.getStringExtra("barcode");
                     signin_id.setText(""+requiredValue);
-                    Log.e("TAG", "Barcode read:final " +requiredValue);
+                            Log.e("TAG", "Barcode read:final " +requiredValue);
+
                 } else {
                     Log.e("TAG", "No barcode captured, intent data is null");
                 }
@@ -86,13 +93,23 @@ public class SigninActivity extends AppCompatActivity implements ServerConnectio
         }
     }
 
-    @Override
-    public void onServerConnectionActionComplete(String value) {
+    private JSONObject onJsonObjectSet(String participant_id){
+        JSONObject object = new JSONObject();
+        try {
+            //input your API parameters
+            object.put("participant_id", participant_id);
+            object.put("product_category_1", "null");
+            object.put("product_category_2", "null");
+            object.put("product_category_3", "null");
+            object.put("product_category_4", "null");
+            object.put("indicator_category_1", "null");
+            object.put("indicator_category_2", "null");
+            object.put("indicator_category_3", "null");
+            object.put("indicator_category_4", "null");
 
-
-    }
-
-    public void onpostRequestUserAccess(){
-        ServerConnection.postRequestUserAccess(getApplicationContext(), mServerConnectionListner);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return object;
     }
 }
